@@ -4,7 +4,7 @@ Public Class MainPage
     Dim CN As New SqlConnection
     Dim CMD As SqlCommand
     Dim usersForm As Users
-
+    Dim gamesFrom As Games
     Private Sub MainPage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CN = New SqlConnection("data source = localhost;" & "integrated security=true;" & "initial catalog = Chess;")
         CMD = New SqlCommand With {
@@ -18,15 +18,8 @@ Public Class MainPage
         usersForm.Show()
     End Sub
 
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles LabelSocial.Click
-
-    End Sub
-
-    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles LabelGames.Click
-
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles ButtonGames.Click
-
+    Private Sub ButtonGames_Click(sender As Object, e As EventArgs) Handles ButtonGames.Click
+        gamesFrom = New Games(CN, CMD)
+        gamesFrom.Show()
     End Sub
 End Class
