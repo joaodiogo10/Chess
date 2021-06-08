@@ -18,4 +18,15 @@ Public Class MainPage
         usersForm.Show()
     End Sub
 
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles LabelSocial.Click
+
+    End Sub
+
+    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles LabelGames.Click
+
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles ButtonGames.Click
+
+    End Sub
 End Class
