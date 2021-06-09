@@ -26,8 +26,8 @@ BEGIN
 END
 GO
 
-SELECT * FROM dbo.udf_GetTeamMembers('Chesslandia')
-SELECT dbo.udf_GetTeamLeader('Chesslandia')
-UPDATE Chess_Team SET Leader = 'AbdullayevB' Where [Name] = 'Chesslandia'
-SELECT dbo.udf_GetTeamLeader('Chesslandia')
-UPDATE Chess_Team SET Leader = 'M3hran' Where [Name] = 'Chesslandia'
+--SELECT * FROM dbo.udf_GetTeamMembers('Chesslandia')
+--SELECT dbo.udf_GetTeamInfo('Chesslandia')
+--UPDATE Chess_Team SET Leader = 'AbdullayevB' Where [Name] = 'Chesslandia'
+--SELECT dbo.udf_GetTeamInfo('Chesslandia')
+--UPDATE Chess_Team SET Leader = 'M3hran' Where [Name] = 'Chesslandia'

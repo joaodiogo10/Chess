@@ -32,9 +32,10 @@ Partial Class MainPage
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(76, 54)
+        Me.Button1.Location = New System.Drawing.Point(87, 72)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(128, 62)
+        Me.Button1.Size = New System.Drawing.Size(146, 83)
         Me.Button1.TabIndex = 0
         Me.Button1.Text = "Users"
         Me.Button1.UseVisualStyleBackColor = True
@@ -43,9 +44,9 @@ Partial Class MainPage
         '
         Me.LabelSocial.AutoSize = True
         Me.LabelSocial.Font = New System.Drawing.Font("Segoe UI", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.LabelSocial.Location = New System.Drawing.Point(76, 23)
+        Me.LabelSocial.Location = New System.Drawing.Point(87, 31)
         Me.LabelSocial.Name = "LabelSocial"
-        Me.LabelSocial.Size = New System.Drawing.Size(64, 28)
+        Me.LabelSocial.Size = New System.Drawing.Size(80, 35)
         Me.LabelSocial.TabIndex = 1
         Me.LabelSocial.Text = "Social"
         '
@@ -53,40 +54,43 @@ Partial Class MainPage
         '
         Me.LabelGames.AutoSize = True
         Me.LabelGames.Font = New System.Drawing.Font("Segoe UI", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.LabelGames.Location = New System.Drawing.Point(76, 132)
+        Me.LabelGames.Location = New System.Drawing.Point(87, 176)
         Me.LabelGames.Name = "LabelGames"
-        Me.LabelGames.Size = New System.Drawing.Size(71, 28)
+        Me.LabelGames.Size = New System.Drawing.Size(91, 35)
         Me.LabelGames.TabIndex = 2
         Me.LabelGames.Text = "Games"
         '
         'ButtonTeams
         '
-        Me.ButtonTeams.Location = New System.Drawing.Point(244, 54)
+        Me.ButtonTeams.Location = New System.Drawing.Point(279, 72)
+        Me.ButtonTeams.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ButtonTeams.Name = "ButtonTeams"
-        Me.ButtonTeams.Size = New System.Drawing.Size(128, 62)
+        Me.ButtonTeams.Size = New System.Drawing.Size(146, 83)
         Me.ButtonTeams.TabIndex = 3
         Me.ButtonTeams.Text = "Teams"
         Me.ButtonTeams.UseVisualStyleBackColor = True
         '
         'ButtonGames
         '
-        Me.ButtonGames.Location = New System.Drawing.Point(76, 163)
+        Me.ButtonGames.Location = New System.Drawing.Point(87, 217)
+        Me.ButtonGames.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ButtonGames.Name = "ButtonGames"
-        Me.ButtonGames.Size = New System.Drawing.Size(128, 62)
+        Me.ButtonGames.Size = New System.Drawing.Size(146, 83)
         Me.ButtonGames.TabIndex = 4
         Me.ButtonGames.Text = "Games"
         Me.ButtonGames.UseVisualStyleBackColor = True
         '
         'MainPage
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(914, 600)
         Me.Controls.Add(Me.ButtonGames)
         Me.Controls.Add(Me.ButtonTeams)
         Me.Controls.Add(Me.LabelGames)
         Me.Controls.Add(Me.LabelSocial)
         Me.Controls.Add(Me.Button1)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "MainPage"
         Me.Text = "Main"
         Me.ResumeLayout(False)

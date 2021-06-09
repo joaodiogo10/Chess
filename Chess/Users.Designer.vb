@@ -50,173 +50,184 @@ Partial Class Users
         'ListBoxUsers
         '
         Me.ListBoxUsers.FormattingEnabled = True
-        Me.ListBoxUsers.ItemHeight = 15
-        Me.ListBoxUsers.Location = New System.Drawing.Point(26, 82)
+        Me.ListBoxUsers.ItemHeight = 20
+        Me.ListBoxUsers.Location = New System.Drawing.Point(30, 109)
+        Me.ListBoxUsers.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ListBoxUsers.Name = "ListBoxUsers"
-        Me.ListBoxUsers.Size = New System.Drawing.Size(289, 229)
+        Me.ListBoxUsers.Size = New System.Drawing.Size(330, 304)
         Me.ListBoxUsers.TabIndex = 0
         '
         'TextBoxUsername
         '
-        Me.TextBoxUsername.Location = New System.Drawing.Point(332, 99)
+        Me.TextBoxUsername.Location = New System.Drawing.Point(379, 132)
+        Me.TextBoxUsername.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxUsername.Name = "TextBoxUsername"
-        Me.TextBoxUsername.Size = New System.Drawing.Size(245, 23)
+        Me.TextBoxUsername.Size = New System.Drawing.Size(279, 27)
         Me.TextBoxUsername.TabIndex = 1
         '
         'LabelUsername
         '
         Me.LabelUsername.AutoSize = True
-        Me.LabelUsername.Location = New System.Drawing.Point(332, 81)
+        Me.LabelUsername.Location = New System.Drawing.Point(379, 108)
         Me.LabelUsername.Name = "LabelUsername"
-        Me.LabelUsername.Size = New System.Drawing.Size(60, 15)
+        Me.LabelUsername.Size = New System.Drawing.Size(75, 20)
         Me.LabelUsername.TabIndex = 2
         Me.LabelUsername.Text = "Username"
         '
         'LabelEmail
         '
         Me.LabelEmail.AutoSize = True
-        Me.LabelEmail.Location = New System.Drawing.Point(332, 140)
+        Me.LabelEmail.Location = New System.Drawing.Point(379, 187)
         Me.LabelEmail.Name = "LabelEmail"
-        Me.LabelEmail.Size = New System.Drawing.Size(36, 15)
+        Me.LabelEmail.Size = New System.Drawing.Size(46, 20)
         Me.LabelEmail.TabIndex = 4
         Me.LabelEmail.Text = "Email"
         '
         'TextBoxEmail
         '
-        Me.TextBoxEmail.Location = New System.Drawing.Point(332, 158)
+        Me.TextBoxEmail.Location = New System.Drawing.Point(379, 211)
+        Me.TextBoxEmail.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxEmail.Name = "TextBoxEmail"
-        Me.TextBoxEmail.Size = New System.Drawing.Size(245, 23)
+        Me.TextBoxEmail.Size = New System.Drawing.Size(279, 27)
         Me.TextBoxEmail.TabIndex = 3
         '
         'LabelPassword
         '
         Me.LabelPassword.AutoSize = True
-        Me.LabelPassword.Location = New System.Drawing.Point(583, 81)
+        Me.LabelPassword.Location = New System.Drawing.Point(666, 108)
         Me.LabelPassword.Name = "LabelPassword"
-        Me.LabelPassword.Size = New System.Drawing.Size(57, 15)
+        Me.LabelPassword.Size = New System.Drawing.Size(70, 20)
         Me.LabelPassword.TabIndex = 6
         Me.LabelPassword.Text = "Password"
         '
         'TextBoxPassword
         '
-        Me.TextBoxPassword.Location = New System.Drawing.Point(583, 99)
+        Me.TextBoxPassword.Location = New System.Drawing.Point(666, 132)
+        Me.TextBoxPassword.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxPassword.Name = "TextBoxPassword"
         Me.TextBoxPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.TextBoxPassword.Size = New System.Drawing.Size(172, 23)
+        Me.TextBoxPassword.Size = New System.Drawing.Size(196, 27)
         Me.TextBoxPassword.TabIndex = 5
         '
         'LabelCountry
         '
         Me.LabelCountry.AutoSize = True
-        Me.LabelCountry.Location = New System.Drawing.Point(583, 140)
+        Me.LabelCountry.Location = New System.Drawing.Point(666, 187)
         Me.LabelCountry.Name = "LabelCountry"
-        Me.LabelCountry.Size = New System.Drawing.Size(50, 15)
+        Me.LabelCountry.Size = New System.Drawing.Size(60, 20)
         Me.LabelCountry.TabIndex = 8
         Me.LabelCountry.Text = "Country"
         '
         'TextBoxCountry
         '
-        Me.TextBoxCountry.Location = New System.Drawing.Point(583, 158)
+        Me.TextBoxCountry.Location = New System.Drawing.Point(666, 211)
+        Me.TextBoxCountry.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxCountry.Name = "TextBoxCountry"
-        Me.TextBoxCountry.Size = New System.Drawing.Size(172, 23)
+        Me.TextBoxCountry.Size = New System.Drawing.Size(196, 27)
         Me.TextBoxCountry.TabIndex = 7
         '
         'LabelRegistrationDate
         '
         Me.LabelRegistrationDate.AutoSize = True
-        Me.LabelRegistrationDate.Location = New System.Drawing.Point(332, 258)
+        Me.LabelRegistrationDate.Location = New System.Drawing.Point(379, 344)
         Me.LabelRegistrationDate.Name = "LabelRegistrationDate"
-        Me.LabelRegistrationDate.Size = New System.Drawing.Size(97, 15)
+        Me.LabelRegistrationDate.Size = New System.Drawing.Size(125, 20)
         Me.LabelRegistrationDate.TabIndex = 12
         Me.LabelRegistrationDate.Text = "Registration Date"
         '
         'TextBoxRegistrationDate
         '
-        Me.TextBoxRegistrationDate.Location = New System.Drawing.Point(332, 276)
+        Me.TextBoxRegistrationDate.Location = New System.Drawing.Point(379, 368)
+        Me.TextBoxRegistrationDate.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxRegistrationDate.Name = "TextBoxRegistrationDate"
-        Me.TextBoxRegistrationDate.Size = New System.Drawing.Size(245, 23)
+        Me.TextBoxRegistrationDate.Size = New System.Drawing.Size(279, 27)
         Me.TextBoxRegistrationDate.TabIndex = 11
         '
         'LabelName
         '
         Me.LabelName.AutoSize = True
-        Me.LabelName.Location = New System.Drawing.Point(332, 199)
+        Me.LabelName.Location = New System.Drawing.Point(379, 265)
         Me.LabelName.Name = "LabelName"
-        Me.LabelName.Size = New System.Drawing.Size(39, 15)
+        Me.LabelName.Size = New System.Drawing.Size(49, 20)
         Me.LabelName.TabIndex = 10
         Me.LabelName.Text = "Name"
         '
         'TextBoxName
         '
-        Me.TextBoxName.Location = New System.Drawing.Point(332, 217)
+        Me.TextBoxName.Location = New System.Drawing.Point(379, 289)
+        Me.TextBoxName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxName.Name = "TextBoxName"
-        Me.TextBoxName.Size = New System.Drawing.Size(245, 23)
+        Me.TextBoxName.Size = New System.Drawing.Size(279, 27)
         Me.TextBoxName.TabIndex = 9
         '
         'LabelTitle
         '
         Me.LabelTitle.AutoSize = True
-        Me.LabelTitle.Location = New System.Drawing.Point(583, 199)
+        Me.LabelTitle.Location = New System.Drawing.Point(666, 265)
         Me.LabelTitle.Name = "LabelTitle"
-        Me.LabelTitle.Size = New System.Drawing.Size(29, 15)
+        Me.LabelTitle.Size = New System.Drawing.Size(38, 20)
         Me.LabelTitle.TabIndex = 14
         Me.LabelTitle.Text = "Title"
         '
         'TextBoxTitle
         '
-        Me.TextBoxTitle.Location = New System.Drawing.Point(583, 217)
+        Me.TextBoxTitle.Location = New System.Drawing.Point(666, 289)
+        Me.TextBoxTitle.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxTitle.Name = "TextBoxTitle"
-        Me.TextBoxTitle.Size = New System.Drawing.Size(172, 23)
+        Me.TextBoxTitle.Size = New System.Drawing.Size(196, 27)
         Me.TextBoxTitle.TabIndex = 13
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(26, 64)
+        Me.Label1.Location = New System.Drawing.Point(30, 85)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(35, 15)
+        Me.Label1.Size = New System.Drawing.Size(44, 20)
         Me.Label1.TabIndex = 15
         Me.Label1.Text = "Users"
         '
         'ListBoxFriends
         '
         Me.ListBoxFriends.FormattingEnabled = True
-        Me.ListBoxFriends.ItemHeight = 15
-        Me.ListBoxFriends.Location = New System.Drawing.Point(26, 341)
+        Me.ListBoxFriends.ItemHeight = 20
+        Me.ListBoxFriends.Location = New System.Drawing.Point(30, 455)
+        Me.ListBoxFriends.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ListBoxFriends.Name = "ListBoxFriends"
-        Me.ListBoxFriends.Size = New System.Drawing.Size(289, 154)
+        Me.ListBoxFriends.Size = New System.Drawing.Size(330, 204)
         Me.ListBoxFriends.TabIndex = 16
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(26, 323)
+        Me.Label2.Location = New System.Drawing.Point(30, 431)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(45, 15)
+        Me.Label2.Size = New System.Drawing.Size(56, 20)
         Me.Label2.TabIndex = 17
         Me.Label2.Text = "Friends"
         '
         'TextBoxSearchUser
         '
-        Me.TextBoxSearchUser.Location = New System.Drawing.Point(26, 27)
+        Me.TextBoxSearchUser.Location = New System.Drawing.Point(30, 36)
+        Me.TextBoxSearchUser.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxSearchUser.Name = "TextBoxSearchUser"
-        Me.TextBoxSearchUser.Size = New System.Drawing.Size(208, 23)
+        Me.TextBoxSearchUser.Size = New System.Drawing.Size(237, 27)
         Me.TextBoxSearchUser.TabIndex = 18
         '
         'LabelSearchUser
         '
         Me.LabelSearchUser.AutoSize = True
-        Me.LabelSearchUser.Location = New System.Drawing.Point(26, 9)
+        Me.LabelSearchUser.Location = New System.Drawing.Point(30, 12)
         Me.LabelSearchUser.Name = "LabelSearchUser"
-        Me.LabelSearchUser.Size = New System.Drawing.Size(113, 15)
+        Me.LabelSearchUser.Size = New System.Drawing.Size(141, 20)
         Me.LabelSearchUser.TabIndex = 19
         Me.LabelSearchUser.Text = "Search by username"
         '
         'ButtonSearchUser
         '
-        Me.ButtonSearchUser.Location = New System.Drawing.Point(240, 27)
+        Me.ButtonSearchUser.Location = New System.Drawing.Point(274, 36)
+        Me.ButtonSearchUser.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ButtonSearchUser.Name = "ButtonSearchUser"
-        Me.ButtonSearchUser.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonSearchUser.Size = New System.Drawing.Size(86, 31)
         Me.ButtonSearchUser.TabIndex = 20
         Me.ButtonSearchUser.Text = "Search"
         Me.ButtonSearchUser.UseVisualStyleBackColor = True
@@ -224,27 +235,30 @@ Partial Class Users
         'LabelTeams
         '
         Me.LabelTeams.AutoSize = True
-        Me.LabelTeams.Location = New System.Drawing.Point(332, 323)
+        Me.LabelTeams.Location = New System.Drawing.Point(379, 431)
         Me.LabelTeams.Name = "LabelTeams"
-        Me.LabelTeams.Size = New System.Drawing.Size(40, 15)
+        Me.LabelTeams.Size = New System.Drawing.Size(51, 20)
         Me.LabelTeams.TabIndex = 22
         Me.LabelTeams.Text = "Teams"
         '
         'ListBoxTeams
         '
         Me.ListBoxTeams.FormattingEnabled = True
-        Me.ListBoxTeams.ItemHeight = 15
-        Me.ListBoxTeams.Location = New System.Drawing.Point(332, 341)
+        Me.ListBoxTeams.ItemHeight = 20
+        Me.ListBoxTeams.Location = New System.Drawing.Point(379, 455)
+        Me.ListBoxTeams.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ListBoxTeams.Name = "ListBoxTeams"
-        Me.ListBoxTeams.Size = New System.Drawing.Size(245, 154)
+        Me.ListBoxTeams.Size = New System.Drawing.Size(279, 204)
         Me.ListBoxTeams.TabIndex = 21
         '
         'Users
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
+        Me.AccessibleDescription = ""
+        Me.AccessibleName = ""
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(854, 507)
+        Me.ClientSize = New System.Drawing.Size(976, 676)
         Me.Controls.Add(Me.LabelTeams)
         Me.Controls.Add(Me.ListBoxTeams)
         Me.Controls.Add(Me.ButtonSearchUser)
@@ -268,6 +282,7 @@ Partial Class Users
         Me.Controls.Add(Me.LabelUsername)
         Me.Controls.Add(Me.TextBoxUsername)
         Me.Controls.Add(Me.ListBoxUsers)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "Users"
         Me.Text = "Users"
         Me.ResumeLayout(False)
