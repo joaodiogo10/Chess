@@ -773,6 +773,7 @@ def createGames():
 
     duration = "{:02d}:{:02d}".format(random.randint(1,59), random.randint(1,59))
     gameDate = random_date_between_range(startTimeGame, endTimeGame).__str__() if date == None else date.__str__()
+    gameTime = get_random_time()
     opening = [open["id"] for open in openings if openingName == open["Name"] or open["Name"] in openingName]
     openingID = opening[0] if opening != [] else random.choice(openings)["id"] 
     formatID = random.choice(formats)["id"] if format == None else format
@@ -781,8 +782,8 @@ def createGames():
     gameJson = {"id": i+1, "duration": duration , "PGN": pgn, "GameDate": gameDate
                       , "Outcome": termination, "FormatID": formatID, "OpeningID": openingID, "tournamentID": tourID}
 
-    gameSql = "INSERT INTO Chess_Game (Duration,PGN,GameDate,OutCome,FormatID,OpeningID,TournamentID) VALUES" + \
-               f"(\'{duration}\',\'{pgn}\', \'{gameDate}\', \'{termination}\', \'{formatID}\',\'{openingID}\',{tourID})\n" 
+    gameSql = "INSERT INTO Chess_Game (Duration,PGN,[Date], [Time],OutCome,FormatID,OpeningID,TournamentID) VALUES" + \
+               f"(\'{duration}\',\'{pgn}\', \'{gameDate}\', \'{gameTime}\', \'{termination}\', \'{formatID}\',\'{openingID}\',{tourID})\n" 
 
 
     cJson = None
@@ -1018,6 +1019,7 @@ def getTournaments():
     duration = tournament["duration"]
     format = random.choice([f for f in formats if (tournament["format"] == f["name"])])["id"]
     date = random_date_between_range(startTimeGame, endTimeGame).__str__()
+    time = get_random_time()
     description = f"This is a {name}"
 
     max = "NULL"
@@ -1027,8 +1029,8 @@ def getTournaments():
       min = max - random.choice([400, 500, 600, 800])
     
     tmpRating = f"\'{max}\',\'{min}\')\n" if max != "NULL" else "NULL,NULL)\n"
-    tournamentSql += "INSERT INTO Chess_Tournament ([Name],[Date],Duration,[Description],FormatID,MaxRating,MinRating) " + \
-                     f"VALUES (\'{name}\', \'{date}\',\'{duration}\',\'{description}\',\'{format}\'," + tmpRating
+    tournamentSql += "INSERT INTO Chess_Tournament ([Name],[Date],[Time],Duration,[Description],FormatID,MaxRating,MinRating) " + \
+                     f"VALUES (\'{name}\', \'{date}\',  \'{time}\',\'{duration}\',\'{description}\',\'{format}\'," + tmpRating
     tournamentJson.append({ "ID": i + 1, "Name": name, "Date": date, "Duration": duration, "Description": description,
                             "MaxRating": max , "MinRating": min ,
                             "Format": format  })
@@ -1110,4 +1112,6 @@ def random_date_between_range(start_date, end_date):
 def random_string_generator(size=10, chars=string.ascii_uppercase + string.digits):
    return ''.join(random.choice(chars) for _ in range(size))        
 
+def get_random_time():
+  return str(random.randint(0,24)) + ":" + str(random.randint(0,59))
 main()

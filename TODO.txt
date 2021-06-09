@@ -1,0 +1,1 @@
+Tournament: Adicionar trigger para Name e Date
