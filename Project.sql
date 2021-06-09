@@ -23,7 +23,7 @@ CREATE TABLE Chess_User (
 	[Name]					 VARCHAR(128) NOT NULL,
 	Country					 VARCHAR(64) NOT NULL,
 	Email					 VARCHAR(128) UNIQUE NOT NULL,
-	RegistrationDate		 DATETIME NOT NULL,
+	RegistrationDate		 DATE NOT NULL,
 	MaxPuzzleRating			 INT NOT NULL DEFAULT 400,
 	CurrentPuzzleRating		 INT NOT NULL DEFAULT 400,
 	CHECK(MaxPuzzleRating >= 0 AND MaxPuzzleRating >= CurrentPuzzleRating),
@@ -46,10 +46,12 @@ CREATE TABLE Chess_Friends (
 )
 GO
 
+-- acrescentar hora
 CREATE TABLE Chess_Tournament (
 	ID						 INT NOT NULL IDENTITY(1,1),
 	[Name]					 VARCHAR(64) NOT NULL,
-	[Date]					 DATETIME NOT NULL,
+	[Date]					 DATE NOT NULL,
+	[Time]					 TIME NOT NULL,
 	Duration				 INT NOT NULL,
 	[Description]			 VARCHAR(2048),
 	MaxRating				 INT DEFAULT NULL,
@@ -58,7 +60,8 @@ CREATE TABLE Chess_Tournament (
 	CHECK(MaxRating >= 0),
 	CHECK(MinRating >= 0),
 	CHECK(MaxRating >= MinRating),
-	PRIMARY KEY(ID)
+	PRIMARY KEY(ID),
+	UNIQUE([Name], [Date], [Time])
 )
 GO
 
@@ -73,7 +76,6 @@ CREATE TABLE Chess_TournamentParticipation (
 )
 GO
 
--- Tournament passa para game
 -- Primary key = ID
 CREATE TABLE Chess_Casual (
 	ID						 INT NOT NULL IDENTITY(1,1),  --?
@@ -85,16 +87,14 @@ CREATE TABLE Chess_Casual (
 )
 GO
 
--- Tournament passa para game
--- Primary key = ID
--- DEFAUL 0 provisorio
+-- DEFAULT NULL provisorio
 CREATE TABLE Chess_Ranked (
 	ID						 INT NOT NULL IDENTITY(1,1), --?
 	[User]					 VARCHAR(64) NOT NULL,
 	Game					 INT NOT NULL,
 	Color					 VARCHAR(5) NOT NULL,
 	Rating					 INT NOT NULL,
-	EarnedRating			 INT DEFAULT 0,
+	EarnedRating			 INT DEFAULT NULL,
 	PRIMARY KEY (ID),
 	CHECK(Rating >= 0),
 	-- CHECK (Color = "White" OR Color = "Black") --?
@@ -106,7 +106,7 @@ GO
 CREATE TABLE Chess_Classified (
 	[User]					 VARCHAR(64) NOT NULL,
 	[FormatID]				 INT NOT NULL,
-	Position				 INT NOT NULL DEFAULT 1,
+	Position				 INT NOT NULL DEFAULT 0,
 	MaxRating				 INT NOT NULL DEFAULT 400,
 	CurrentRating			 INT NOT NULL DEFAULT 400,
 	CHECK(Position >= 0),
@@ -133,7 +133,8 @@ CREATE TABLE Chess_Member (
 CREATE TABLE Chess_PuzzleRecord (
     ID				INT IDENTITY(1,1),
     [User]			VARCHAR(64),
-    RecordDate		DATETIME NOT NULL,	
+    [Date]			DATE NOT NULL,
+	[Time]			TIME NOT NULL,
     Rating			INT	NOT NULL,		
     EarnedRating	INT NOT NULL DEFAULT 0,
     PuzzleID		INT NOT NULL,
@@ -162,19 +163,20 @@ CREATE TABLE Chess_Theme (
 	[Name]	VARCHAR(64),
 	PRIMARY KEY(ID)
 )
+
 CREATE TABLE Chess_Game (
 	ID				INT IDENTITY(1,1),
-	Duration		VARCHAR(5) NOT NULL,
+	Duration		VARCHAR(5),
 	PGN				VARCHAR(MAX),
-	GameDate		DATETIME NOT NULL,
-	Outcome			VARCHAR(64) NOT NULL, -- ???
+	[Date]			DATE NOT NULL,
+	[Time]			TIME NOT NULL,
+	Outcome			VARCHAR(64), -- ???
 	FormatID		INT NOT NULL,
-	OpeningID		INT	NOT NULL,
+	OpeningID		INT,
 	TournamentID	INT,
 	PRIMARY KEY(ID)
 )
 
--- mudancas
 CREATE TABLE Chess_Opening (
 	ID		INT IDENTITY(1,1),
 	ECOCode VARCHAR(3)	NOT NULL,
@@ -183,15 +185,14 @@ CREATE TABLE Chess_Opening (
 	PRIMARY KEY(ID)
 )
 
--- Mudei primary key Name --> ID
 CREATE TABLE Chess_Format (
 	ID				INT IDENTITY(1,1),
 	[Name]			VARCHAR(64),
 	ClockTime		INT	NOT NULL,
-	ClockIncrement	INT,
+	ClockIncrement	INT NOT NULL,
 	CHECK(ClockTime >= 0),
-	CHECK(ClockTime >= 0),
-	UNIQUE([NAME],ClockTime,ClockIncrement),
+	CHECK(ClockIncrement >= 0),
+	UNIQUE(ClockTime,ClockIncrement),
 	PRIMARY KEY(ID)
 )
 
@@ -285,7 +286,7 @@ Select * FROM Chess_PuzzleRecord
 Select * FROM Chess_PuzzleTheme
 Select * FROM Chess_Puzzle
 Select * FROM Chess_Theme
-Select * FROM Chess_Classified
+Select * FROM Chess_Classified ORDER BY [USER]
 Select * FROM Chess_Casual
 Select * FROM Chess_Ranked
 Select * FROM Chess_Game

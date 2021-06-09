@@ -49,7 +49,7 @@ GO
 -- Given a teamName and an username, set leader to username
 CREATE PROCEDURE dbo.pr_ChangeTeamLeader (@teamName VARCHAR(128), @userName VARCHAR(64))
 AS 
-		UPDATE Chess_Team SET Leader = @userName WHERE [Name] = @teamName
+	UPDATE Chess_Team SET Leader = @userName WHERE [Name] = @teamName
 GO
 
 EXEC pr_ChangeTeamLeader @teamName = 'Chesslandia', @userName = 'Adri_3'

@@ -1,8 +1,8 @@
-DROP TRIGGER trigger_onTeamInsert
-DROP TRIGGER trigger_onTeamUpdate
+DROP TRIGGER tr_onTeamInsert
+DROP TRIGGER tr_onTeamUpdate
 GO
 
-CREATE TRIGGER trigger_onTeamInsert ON dbo.CHESS_Team
+CREATE TRIGGER tr_onTeamInsert ON dbo.CHESS_Team
 AFTER INSERT
 AS
 BEGIN
@@ -13,7 +13,7 @@ BEGIN
 END
 GO
 
-CREATE TRIGGER trigger_onTeamUpdate ON dbo.CHESS_Team
+CREATE TRIGGER tr_onTeamUpdate ON dbo.CHESS_Team
 AFTER UPDATE
 AS
 BEGIN
