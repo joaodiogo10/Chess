@@ -5,6 +5,7 @@ Public Class MainPage
     Dim CMD As SqlCommand
     Dim usersForm As Users
     Dim teamsForm As Teams
+    Dim gamesForm As Games
 
     Private Sub MainPage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CN = New SqlConnection("data source = localhost;" & "integrated security=true;" & "initial catalog = Chess;")
@@ -34,5 +35,10 @@ Public Class MainPage
     Private Sub ButtonTeams_Click(sender As Object, e As EventArgs) Handles ButtonTeams.Click
         teamsForm = New Teams(CN, CMD)
         teamsForm.Show()
+    End Sub
+
+    Private Sub ButtonGames_Click(sender As Object, e As EventArgs) Handles ButtonGames.Click
+        gamesForm = New Games(CN, CMD)
+        gamesForm.Show()
     End Sub
 End Class
