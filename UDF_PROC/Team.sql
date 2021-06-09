@@ -46,6 +46,7 @@ GO
 EXEC pr_DeleteTeamMember @teamName = 'Chesslandia', @userName = 'Adri_3'
 GO
 
+-- Given a teamName and an username, set leader to username
 CREATE PROCEDURE dbo.pr_ChangeTeamLeader (@teamName VARCHAR(128), @userName VARCHAR(64))
 AS 
 		UPDATE Chess_Team SET Leader = @userName WHERE [Name] = @teamName
@@ -54,6 +55,7 @@ GO
 EXEC pr_ChangeTeamLeader @teamName = 'Chesslandia', @userName = 'Adri_3'
 GO
 
+--Given a teamName deletes it
 CREATE PROCEDURE dbo.pr_DeleteTeam (@teamName VARCHAR(128))
 AS
 	DECLARE @Leader VARCHAR(64)
