@@ -9,7 +9,7 @@ CREATE PROCEDURE pr_GetGameInfo (@GameID INT, @TournamentName VARCHAR(64) OUTPUT
 AS
 BEGIN
 	DECLARE @Game TABLE (GameID INT, Black VARCHAR(64), White VARCHAR(64), Duration VARCHAR(5), PGN VARCHAR(MAX),
-	[Date] DATE, [Time] Time, Outcome VARCHAR(64), FormatName VARCHAR(64), ClockTime INT, ClockIncrement INT, 
+	[Date] DATE, [Time] Time,Termination VARCHAR(64), Result VARCHAR(5), FormatName VARCHAR(64), ClockTime INT, ClockIncrement INT, 
 	OpeningECOCode VARCHAR(3), OpeningName VARCHAR(128), OpeningPattern VARCHAR(1024),
 	TournamentName VARCHAR(64), TournamentDate DATETIME)
 
@@ -29,7 +29,7 @@ BEGIN
 		MAX(Players.[User]) FOR Color in (Black, White)
 	)PIV
 
-	INSERT INTO @Game SELECT GameID, Black, White, Chess_GAME.Duration, PGN, Chess_Game.[Date], Chess_Game.[Time], Outcome, Chess_Format.[Name], Chess_Format.ClockTime, Chess_Format.ClockIncrement
+	INSERT INTO @Game SELECT GameID, Black, White, Chess_GAME.Duration, PGN, Chess_Game.[Date], Chess_Game.[Time], Termination, Result, Chess_Format.[Name], Chess_Format.ClockTime, Chess_Format.ClockIncrement
 	, Chess_Opening.ECOCode, Chess_Opening.[Name], Chess_Opening.Pattern, Chess_Tournament.[Name], Chess_Tournament.[Date]
 	FROM 
 	(
@@ -45,7 +45,7 @@ BEGIN
 	)
 
 	SELECT @TournamentDate = TournamentDate, @TournamentName = TournamentName FROM @Game 
-	SELECT GameID, Black , White , Duration, PGN ,Date, Outcome, FormatName, ClockTime, ClockIncrement, OpeningECOCode, OpeningName, OpeningPattern FROM @Game
+	SELECT GameID, Black , White , Duration, PGN ,[Date], Termination, Result, FormatName, ClockTime, ClockIncrement, OpeningECOCode, OpeningName, OpeningPattern FROM @Game
 END
 GO
 
@@ -62,6 +62,7 @@ DROP PROCEDURE dbo.pr_newGame
 GO
 
 -- Create new Game of given format (of given tournament opcional)
+-- Create new GameRecords
 -- Inputs: ClockTime, ClockIncrement, Player name playing black, Player name playing white
 --		   Type (0 casual, 1 ranked)
 -- Acrescentar o possibilidade de definir o time?
@@ -89,8 +90,8 @@ BEGIN
 		SET @TodayTime = CONVERT(TIME(0),GETDATE())
 	
 		INSERT INTO Chess_Game ([Date], [Time], FormatID, TournamentID) VALUES (@TodayDate, @TodayTime, @FormatID, @TournamentID)
-		DECLARE @GameID INT = SCOPE_IDENTITY()
-		
+		DECLARE @GameID INT = @@IDENTITY
+		SELECT @GameID
 		SELECT @BlackRating = CurrentRating FROM Chess_Classified WHERE FormatID = @FormatID AND [USER] = @PlayerBlack 
 		SELECT @WhiteRating = CurrentRating FROM Chess_Classified WHERE FormatID = @FormatID AND [USER] = @PlayerWhite
 
@@ -118,9 +119,9 @@ END
 GO
 
 --Casual
-EXEC pr_NewGame 3, 0, 'aaaenzo', 'aarush23', NULL, 0
+EXEC pr_NewGame 3, 0, 'LuckyLucker', 'yassinetaoufiki', NULL, 0
 --Ranked
-EXEC pr_NewGame 3, 0, 'aaaenzo', 'aarush23', NULL, 1
+EXEC pr_NewGame 3, 0, 'LuckyLucker', 'yassinetaoufiki', NULL, 1
 SELECT * FROM Chess_Game
 SELECT * FROM Chess_Casual
 SELECT * FROM Chess_Ranked
@@ -153,11 +154,11 @@ GO
 -- Private
 -- Get TournamentID for given Tournament name and date
 -- Returns NULL IF Tournament doesnt exist
-CREATE FUNCTION dbo.udf_GetTournamentID (@Name VARCHAR(64), @Date DATE) RETURNS INT
+CREATE FUNCTION dbo.udf_GetTournamentID (@Name VARCHAR(64), @Date DATE, @Time TIME) RETURNS INT
 AS
 BEGIN
 	DECLARE @TournamentID INT
-	SELECT @TournamentID = ID FROM Chess_Tournament WHERE [Name] = @Name AND [Date] = @Date
+	SELECT @TournamentID = ID FROM Chess_Tournament WHERE [Name] = @Name AND [Date] = @Date AND [Time] = @Time
 	RETURN @TournamentID
 END
 GO

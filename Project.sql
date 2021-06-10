@@ -163,18 +163,21 @@ CREATE TABLE Chess_Theme (
 	[Name]	VARCHAR(64),
 	PRIMARY KEY(ID)
 )
-
+-- Adcionei Result
 CREATE TABLE Chess_Game (
 	ID				INT IDENTITY(1,1),
 	Duration		VARCHAR(5),
 	PGN				VARCHAR(MAX),
 	[Date]			DATE NOT NULL,
 	[Time]			TIME NOT NULL,
-	Outcome			VARCHAR(64), -- ???
+	Termination		VARCHAR(64), 
+	Result			VARCHAR(5),
 	FormatID		INT NOT NULL,
 	OpeningID		INT,
 	TournamentID	INT,
-	PRIMARY KEY(ID)
+	PRIMARY KEY(ID),
+	CHECK (Result = 'BLACK' OR Result = 'WHITE' OR RESULT = 'DRAW'),
+	CHECK (termination = 'TIME FORFEIT' OR termination = 'NORMAL' OR termination = 'ABANDONED')
 )
 
 CREATE TABLE Chess_Opening (
@@ -195,9 +198,11 @@ CREATE TABLE Chess_Format (
 	UNIQUE(ClockTime,ClockIncrement),
 	PRIMARY KEY(ID)
 )
+GO
 
 ALTER TABLE Chess_UserTitle ADD CONSTRAINT FK_UserTitile_User_User
 FOREIGN KEY([User]) REFERENCES Chess_User(Username)
+GO
 
 ALTER TABLE Chess_Friends ADD CONSTRAINT FK_FriendsSUser_User_SUsername
 FOREIGN KEY(SUsername) REFERENCES Chess_User(Username)
