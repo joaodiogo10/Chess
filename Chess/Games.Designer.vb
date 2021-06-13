@@ -40,8 +40,8 @@ Partial Class Games
         Me.TextBoxOpeningCode = New System.Windows.Forms.TextBox()
         Me.LabelFormat = New System.Windows.Forms.Label()
         Me.TextBoxFormat = New System.Windows.Forms.TextBox()
-        Me.LabelOutcome = New System.Windows.Forms.Label()
-        Me.TextBoxOutcome = New System.Windows.Forms.TextBox()
+        Me.LabelTermination = New System.Windows.Forms.Label()
+        Me.TextBoxTermination = New System.Windows.Forms.TextBox()
         Me.TextBoxClockIncrement = New System.Windows.Forms.TextBox()
         Me.LabelClock = New System.Windows.Forms.Label()
         Me.TextBoxClockTime = New System.Windows.Forms.TextBox()
@@ -50,6 +50,16 @@ Partial Class Games
         Me.LabelDateTournament = New System.Windows.Forms.Label()
         Me.TextBoxDateTournament = New System.Windows.Forms.TextBox()
         Me.GroupBoxTournament = New System.Windows.Forms.GroupBox()
+        Me.LabelWinner = New System.Windows.Forms.Label()
+        Me.TextBoxWinner = New System.Windows.Forms.TextBox()
+        Me.LabelTime = New System.Windows.Forms.Label()
+        Me.TextBoxTime = New System.Windows.Forms.TextBox()
+        Me.ListBoxOngoingMatches = New System.Windows.Forms.ListBox()
+        Me.LabelOngoingMatches = New System.Windows.Forms.Label()
+        Me.ButtonReload = New System.Windows.Forms.Button()
+        Me.ButtonDeclareMatch = New System.Windows.Forms.Button()
+        Me.LabelIdentifier = New System.Windows.Forms.Label()
+        Me.LabelGameID = New System.Windows.Forms.Label()
         Me.GroupBoxTournament.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -80,7 +90,7 @@ Partial Class Games
         '
         'TextBoxBlack
         '
-        Me.TextBoxBlack.Location = New System.Drawing.Point(400, 45)
+        Me.TextBoxBlack.Location = New System.Drawing.Point(402, 88)
         Me.TextBoxBlack.Name = "TextBoxBlack"
         Me.TextBoxBlack.Size = New System.Drawing.Size(123, 23)
         Me.TextBoxBlack.TabIndex = 24
@@ -88,7 +98,7 @@ Partial Class Games
         'LabelBlack
         '
         Me.LabelBlack.AutoSize = True
-        Me.LabelBlack.Location = New System.Drawing.Point(400, 27)
+        Me.LabelBlack.Location = New System.Drawing.Point(402, 70)
         Me.LabelBlack.Name = "LabelBlack"
         Me.LabelBlack.Size = New System.Drawing.Size(35, 15)
         Me.LabelBlack.TabIndex = 25
@@ -97,7 +107,7 @@ Partial Class Games
         'vs
         '
         Me.vs.AutoSize = True
-        Me.vs.Location = New System.Drawing.Point(529, 48)
+        Me.vs.Location = New System.Drawing.Point(531, 91)
         Me.vs.Name = "vs"
         Me.vs.Size = New System.Drawing.Size(18, 15)
         Me.vs.TabIndex = 26
@@ -106,7 +116,7 @@ Partial Class Games
         'LabelWhite
         '
         Me.LabelWhite.AutoSize = True
-        Me.LabelWhite.Location = New System.Drawing.Point(553, 30)
+        Me.LabelWhite.Location = New System.Drawing.Point(555, 73)
         Me.LabelWhite.Name = "LabelWhite"
         Me.LabelWhite.Size = New System.Drawing.Size(38, 15)
         Me.LabelWhite.TabIndex = 28
@@ -114,7 +124,7 @@ Partial Class Games
         '
         'TextBoxWhite
         '
-        Me.TextBoxWhite.Location = New System.Drawing.Point(553, 48)
+        Me.TextBoxWhite.Location = New System.Drawing.Point(555, 91)
         Me.TextBoxWhite.Name = "TextBoxWhite"
         Me.TextBoxWhite.Size = New System.Drawing.Size(129, 23)
         Me.TextBoxWhite.TabIndex = 27
@@ -122,7 +132,7 @@ Partial Class Games
         'LabelDuration
         '
         Me.LabelDuration.AutoSize = True
-        Me.LabelDuration.Location = New System.Drawing.Point(400, 81)
+        Me.LabelDuration.Location = New System.Drawing.Point(402, 124)
         Me.LabelDuration.Name = "LabelDuration"
         Me.LabelDuration.Size = New System.Drawing.Size(53, 15)
         Me.LabelDuration.TabIndex = 30
@@ -130,7 +140,7 @@ Partial Class Games
         '
         'TextBoxDuration
         '
-        Me.TextBoxDuration.Location = New System.Drawing.Point(400, 99)
+        Me.TextBoxDuration.Location = New System.Drawing.Point(402, 142)
         Me.TextBoxDuration.Name = "TextBoxDuration"
         Me.TextBoxDuration.Size = New System.Drawing.Size(123, 23)
         Me.TextBoxDuration.TabIndex = 29
@@ -138,7 +148,7 @@ Partial Class Games
         'LabelDateGame
         '
         Me.LabelDateGame.AutoSize = True
-        Me.LabelDateGame.Location = New System.Drawing.Point(553, 81)
+        Me.LabelDateGame.Location = New System.Drawing.Point(555, 124)
         Me.LabelDateGame.Name = "LabelDateGame"
         Me.LabelDateGame.Size = New System.Drawing.Size(31, 15)
         Me.LabelDateGame.TabIndex = 32
@@ -146,7 +156,7 @@ Partial Class Games
         '
         'TextBoxDateGame
         '
-        Me.TextBoxDateGame.Location = New System.Drawing.Point(553, 99)
+        Me.TextBoxDateGame.Location = New System.Drawing.Point(555, 142)
         Me.TextBoxDateGame.Name = "TextBoxDateGame"
         Me.TextBoxDateGame.Size = New System.Drawing.Size(129, 23)
         Me.TextBoxDateGame.TabIndex = 31
@@ -154,7 +164,7 @@ Partial Class Games
         'LabelOpeningName
         '
         Me.LabelOpeningName.AutoSize = True
-        Me.LabelOpeningName.Location = New System.Drawing.Point(400, 184)
+        Me.LabelOpeningName.Location = New System.Drawing.Point(402, 227)
         Me.LabelOpeningName.Name = "LabelOpeningName"
         Me.LabelOpeningName.Size = New System.Drawing.Size(88, 15)
         Me.LabelOpeningName.TabIndex = 34
@@ -162,7 +172,7 @@ Partial Class Games
         '
         'TextBoxOpeningName
         '
-        Me.TextBoxOpeningName.Location = New System.Drawing.Point(400, 202)
+        Me.TextBoxOpeningName.Location = New System.Drawing.Point(402, 245)
         Me.TextBoxOpeningName.Name = "TextBoxOpeningName"
         Me.TextBoxOpeningName.Size = New System.Drawing.Size(282, 23)
         Me.TextBoxOpeningName.TabIndex = 33
@@ -170,7 +180,7 @@ Partial Class Games
         'LabelOpeningCode
         '
         Me.LabelOpeningCode.AutoSize = True
-        Me.LabelOpeningCode.Location = New System.Drawing.Point(699, 184)
+        Me.LabelOpeningCode.Location = New System.Drawing.Point(701, 227)
         Me.LabelOpeningCode.Name = "LabelOpeningCode"
         Me.LabelOpeningCode.Size = New System.Drawing.Size(84, 15)
         Me.LabelOpeningCode.TabIndex = 36
@@ -178,7 +188,7 @@ Partial Class Games
         '
         'TextBoxOpeningCode
         '
-        Me.TextBoxOpeningCode.Location = New System.Drawing.Point(699, 202)
+        Me.TextBoxOpeningCode.Location = New System.Drawing.Point(701, 245)
         Me.TextBoxOpeningCode.Name = "TextBoxOpeningCode"
         Me.TextBoxOpeningCode.Size = New System.Drawing.Size(84, 23)
         Me.TextBoxOpeningCode.TabIndex = 35
@@ -186,7 +196,7 @@ Partial Class Games
         'LabelFormat
         '
         Me.LabelFormat.AutoSize = True
-        Me.LabelFormat.Location = New System.Drawing.Point(400, 238)
+        Me.LabelFormat.Location = New System.Drawing.Point(402, 281)
         Me.LabelFormat.Name = "LabelFormat"
         Me.LabelFormat.Size = New System.Drawing.Size(45, 15)
         Me.LabelFormat.TabIndex = 40
@@ -194,30 +204,30 @@ Partial Class Games
         '
         'TextBoxFormat
         '
-        Me.TextBoxFormat.Location = New System.Drawing.Point(400, 256)
+        Me.TextBoxFormat.Location = New System.Drawing.Point(402, 299)
         Me.TextBoxFormat.Name = "TextBoxFormat"
         Me.TextBoxFormat.Size = New System.Drawing.Size(129, 23)
         Me.TextBoxFormat.TabIndex = 39
         '
-        'LabelOutcome
+        'LabelTermination
         '
-        Me.LabelOutcome.AutoSize = True
-        Me.LabelOutcome.Location = New System.Drawing.Point(400, 133)
-        Me.LabelOutcome.Name = "LabelOutcome"
-        Me.LabelOutcome.Size = New System.Drawing.Size(57, 15)
-        Me.LabelOutcome.TabIndex = 38
-        Me.LabelOutcome.Text = "Outcome"
+        Me.LabelTermination.AutoSize = True
+        Me.LabelTermination.Location = New System.Drawing.Point(402, 176)
+        Me.LabelTermination.Name = "LabelTermination"
+        Me.LabelTermination.Size = New System.Drawing.Size(70, 15)
+        Me.LabelTermination.TabIndex = 38
+        Me.LabelTermination.Text = "Termination"
         '
-        'TextBoxOutcome
+        'TextBoxTermination
         '
-        Me.TextBoxOutcome.Location = New System.Drawing.Point(400, 151)
-        Me.TextBoxOutcome.Name = "TextBoxOutcome"
-        Me.TextBoxOutcome.Size = New System.Drawing.Size(123, 23)
-        Me.TextBoxOutcome.TabIndex = 37
+        Me.TextBoxTermination.Location = New System.Drawing.Point(402, 194)
+        Me.TextBoxTermination.Name = "TextBoxTermination"
+        Me.TextBoxTermination.Size = New System.Drawing.Size(123, 23)
+        Me.TextBoxTermination.TabIndex = 37
         '
         'TextBoxClockIncrement
         '
-        Me.TextBoxClockIncrement.Location = New System.Drawing.Point(714, 256)
+        Me.TextBoxClockIncrement.Location = New System.Drawing.Point(716, 299)
         Me.TextBoxClockIncrement.Name = "TextBoxClockIncrement"
         Me.TextBoxClockIncrement.Size = New System.Drawing.Size(69, 23)
         Me.TextBoxClockIncrement.TabIndex = 43
@@ -225,7 +235,7 @@ Partial Class Games
         'LabelClock
         '
         Me.LabelClock.AutoSize = True
-        Me.LabelClock.Location = New System.Drawing.Point(585, 259)
+        Me.LabelClock.Location = New System.Drawing.Point(587, 302)
         Me.LabelClock.Name = "LabelClock"
         Me.LabelClock.Size = New System.Drawing.Size(46, 15)
         Me.LabelClock.TabIndex = 42
@@ -233,7 +243,7 @@ Partial Class Games
         '
         'TextBoxClockTime
         '
-        Me.TextBoxClockTime.Location = New System.Drawing.Point(637, 256)
+        Me.TextBoxClockTime.Location = New System.Drawing.Point(639, 299)
         Me.TextBoxClockTime.Name = "TextBoxClockTime"
         Me.TextBoxClockTime.Size = New System.Drawing.Size(71, 23)
         Me.TextBoxClockTime.TabIndex = 41
@@ -281,7 +291,7 @@ Partial Class Games
         Me.GroupBoxTournament.Controls.Add(Me.TextBoxDateTournament)
         Me.GroupBoxTournament.Controls.Add(Me.LabelTournamentName)
         Me.GroupBoxTournament.Font = New System.Drawing.Font("Segoe UI", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.GroupBoxTournament.Location = New System.Drawing.Point(400, 299)
+        Me.GroupBoxTournament.Location = New System.Drawing.Point(402, 342)
         Me.GroupBoxTournament.Name = "GroupBoxTournament"
         Me.GroupBoxTournament.Size = New System.Drawing.Size(352, 95)
         Me.GroupBoxTournament.TabIndex = 49
@@ -289,19 +299,115 @@ Partial Class Games
         Me.GroupBoxTournament.Text = "Tournament"
         Me.GroupBoxTournament.Visible = False
         '
+        'LabelWinner
+        '
+        Me.LabelWinner.AutoSize = True
+        Me.LabelWinner.Location = New System.Drawing.Point(555, 176)
+        Me.LabelWinner.Name = "LabelWinner"
+        Me.LabelWinner.Size = New System.Drawing.Size(45, 15)
+        Me.LabelWinner.TabIndex = 51
+        Me.LabelWinner.Text = "Winner"
+        '
+        'TextBoxWinner
+        '
+        Me.TextBoxWinner.Location = New System.Drawing.Point(555, 194)
+        Me.TextBoxWinner.Name = "TextBoxWinner"
+        Me.TextBoxWinner.Size = New System.Drawing.Size(129, 23)
+        Me.TextBoxWinner.TabIndex = 50
+        '
+        'LabelTime
+        '
+        Me.LabelTime.AutoSize = True
+        Me.LabelTime.Location = New System.Drawing.Point(701, 124)
+        Me.LabelTime.Name = "LabelTime"
+        Me.LabelTime.Size = New System.Drawing.Size(33, 15)
+        Me.LabelTime.TabIndex = 53
+        Me.LabelTime.Text = "Time"
+        '
+        'TextBoxTime
+        '
+        Me.TextBoxTime.Location = New System.Drawing.Point(701, 142)
+        Me.TextBoxTime.Name = "TextBoxTime"
+        Me.TextBoxTime.Size = New System.Drawing.Size(84, 23)
+        Me.TextBoxTime.TabIndex = 52
+        '
+        'ListBoxOngoingMatches
+        '
+        Me.ListBoxOngoingMatches.FormattingEnabled = True
+        Me.ListBoxOngoingMatches.ItemHeight = 15
+        Me.ListBoxOngoingMatches.Location = New System.Drawing.Point(32, 143)
+        Me.ListBoxOngoingMatches.Name = "ListBoxOngoingMatches"
+        Me.ListBoxOngoingMatches.Size = New System.Drawing.Size(287, 154)
+        Me.ListBoxOngoingMatches.TabIndex = 54
+        '
+        'LabelOngoingMatches
+        '
+        Me.LabelOngoingMatches.AutoSize = True
+        Me.LabelOngoingMatches.Location = New System.Drawing.Point(32, 125)
+        Me.LabelOngoingMatches.Name = "LabelOngoingMatches"
+        Me.LabelOngoingMatches.Size = New System.Drawing.Size(105, 15)
+        Me.LabelOngoingMatches.TabIndex = 55
+        Me.LabelOngoingMatches.Text = "Ongoing Matches:"
+        '
+        'ButtonReload
+        '
+        Me.ButtonReload.Location = New System.Drawing.Point(258, 122)
+        Me.ButtonReload.Name = "ButtonReload"
+        Me.ButtonReload.Size = New System.Drawing.Size(61, 21)
+        Me.ButtonReload.TabIndex = 56
+        Me.ButtonReload.Text = "Reload"
+        Me.ButtonReload.UseVisualStyleBackColor = True
+        '
+        'ButtonDeclareMatch
+        '
+        Me.ButtonDeclareMatch.Location = New System.Drawing.Point(665, 463)
+        Me.ButtonDeclareMatch.Name = "ButtonDeclareMatch"
+        Me.ButtonDeclareMatch.Size = New System.Drawing.Size(118, 28)
+        Me.ButtonDeclareMatch.TabIndex = 57
+        Me.ButtonDeclareMatch.Text = "Declare match"
+        Me.ButtonDeclareMatch.UseVisualStyleBackColor = True
+        Me.ButtonDeclareMatch.Visible = False
+        '
+        'LabelIdentifier
+        '
+        Me.LabelIdentifier.AutoSize = True
+        Me.LabelIdentifier.Location = New System.Drawing.Point(402, 44)
+        Me.LabelIdentifier.Name = "LabelIdentifier"
+        Me.LabelIdentifier.Size = New System.Drawing.Size(21, 15)
+        Me.LabelIdentifier.TabIndex = 58
+        Me.LabelIdentifier.Text = "ID:"
+        '
+        'LabelGameID
+        '
+        Me.LabelGameID.AutoSize = True
+        Me.LabelGameID.Location = New System.Drawing.Point(438, 45)
+        Me.LabelGameID.Name = "LabelGameID"
+        Me.LabelGameID.Size = New System.Drawing.Size(0, 15)
+        Me.LabelGameID.TabIndex = 59
+        '
         'Games
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(823, 450)
+        Me.ClientSize = New System.Drawing.Size(823, 523)
+        Me.Controls.Add(Me.LabelGameID)
+        Me.Controls.Add(Me.LabelIdentifier)
+        Me.Controls.Add(Me.ButtonDeclareMatch)
+        Me.Controls.Add(Me.ButtonReload)
+        Me.Controls.Add(Me.LabelOngoingMatches)
+        Me.Controls.Add(Me.ListBoxOngoingMatches)
+        Me.Controls.Add(Me.LabelTime)
+        Me.Controls.Add(Me.TextBoxTime)
+        Me.Controls.Add(Me.LabelWinner)
+        Me.Controls.Add(Me.TextBoxWinner)
         Me.Controls.Add(Me.GroupBoxTournament)
         Me.Controls.Add(Me.TextBoxClockIncrement)
         Me.Controls.Add(Me.LabelClock)
         Me.Controls.Add(Me.TextBoxClockTime)
         Me.Controls.Add(Me.LabelFormat)
         Me.Controls.Add(Me.TextBoxFormat)
-        Me.Controls.Add(Me.LabelOutcome)
-        Me.Controls.Add(Me.TextBoxOutcome)
+        Me.Controls.Add(Me.LabelTermination)
+        Me.Controls.Add(Me.TextBoxTermination)
         Me.Controls.Add(Me.LabelOpeningCode)
         Me.Controls.Add(Me.TextBoxOpeningCode)
         Me.Controls.Add(Me.LabelOpeningName)
@@ -319,7 +425,7 @@ Partial Class Games
         Me.Controls.Add(Me.LabelSearchGame)
         Me.Controls.Add(Me.TextBoxSearchGame)
         Me.Name = "Games"
-        Me.Text = "Games"
+        Me.Text = "v"
         Me.GroupBoxTournament.ResumeLayout(False)
         Me.GroupBoxTournament.PerformLayout()
         Me.ResumeLayout(False)
@@ -347,8 +453,8 @@ Partial Class Games
     Friend WithEvents TextBoxOpeningCode As TextBox
     Friend WithEvents LabelFormat As Label
     Friend WithEvents TextBoxFormat As TextBox
-    Friend WithEvents LabelOutcome As Label
-    Friend WithEvents TextBoxOutcome As TextBox
+    Friend WithEvents LabelTermination As Label
+    Friend WithEvents TextBoxTermination As TextBox
     Friend WithEvents TextBoxClockIncrement As TextBox
     Friend WithEvents LabelClock As Label
     Friend WithEvents TextBoxClockTime As TextBox
@@ -359,4 +465,17 @@ Partial Class Games
     Friend WithEvents LabelTournamentDate As Label
     Friend WithEvents LabelDateTournament As Label
     Friend WithEvents GroupBoxTournament As GroupBox
+    Friend WithEvents LabelWinner As Label
+    Friend WithEvents TextBoxWinner As TextBox
+    Friend WithEvents LabelTime As Label
+    Friend WithEvents TextBoxTime As TextBox
+    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents LabelOngoingMatches As Label
+    Friend WithEvents ListBoxOngoingMatches As ListBox
+    Friend WithEvents ButtonReload As Button
+    Friend WithEvents ButtonDeclareMatch As Button
+    Friend WithEvents LabelID As Label
+    Friend WithEvents Label_ID As Label
+    Friend WithEvents LabelGameID As Label
+    Friend WithEvents LabelIdentifier As Label
 End Class

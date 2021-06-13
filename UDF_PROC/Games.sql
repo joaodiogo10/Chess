@@ -1,4 +1,5 @@
 DROP PROCEDURE pr_GetGameInfo
+DROP PROCEDURE pr_NewGame
 GO
 -- indices Game - Ranked e Casual
 
@@ -36,23 +37,23 @@ BEGIN
 		@GameTmp 
 		JOIN 
 		Chess_Game ON GameID = Chess_Game.ID 
-		JOIN
+		LEFT OUTER JOIN
 		Chess_Format ON Chess_Format.ID = Chess_Game.FormatID
-		JOIN 
+		LEFT OUTER JOIN 
 		Chess_Opening ON Chess_Opening.ID = Chess_Game.OpeningID
 		LEFT OUTER JOIN
 		Chess_Tournament ON Chess_Tournament.ID = Chess_Game.TournamentID
 	)
 
 	SELECT @TournamentDate = TournamentDate, @TournamentName = TournamentName FROM @Game 
-	SELECT GameID, Black , White , Duration, PGN ,[Date], Termination, Result, FormatName, ClockTime, ClockIncrement, OpeningECOCode, OpeningName, OpeningPattern FROM @Game
+	SELECT GameID, Black , White , Duration, PGN , [Time],[Date], Termination, Result, FormatName, ClockTime, ClockIncrement, OpeningECOCode, OpeningName, OpeningPattern FROM @Game
 END
 GO
 
 DECLARE @TournamentName VARCHAR(64)
 DECLARE @TournamentDate DATE
 DECLARE @TournamentTime TIME
-EXEC pr_GetGameInfo 1001, @TournamentName OUTPUT, @TournamentDate OUTPUT, @TournamentTime OUTPUT
+EXEC pr_GetGameInfo 2951, @TournamentName OUTPUT, @TournamentDate OUTPUT, @TournamentTime OUTPUT
 
 SELECT @TournamentName
 SELECT @TournamentDate
@@ -125,14 +126,39 @@ EXEC pr_NewGame 3, 0, 'LuckyLucker', 'yassinetaoufiki', NULL, 1
 SELECT * FROM Chess_Game
 SELECT * FROM Chess_Casual
 SELECT * FROM Chess_Ranked
+SELECT * FROM Chess_Classified
 GO
 
-DROP FUNCTION dbo.udf_GetFormatID
+
+DROP PROCEDURE dbo.pr_getOnGoingGames
+GO
+-- Indices para termination = NULL? ou para date
+-- Input: Type 0 - casual; 1 - ranked; NULL - both 
+CREATE PROCEDURE dbo.pr_getOnGoingGames(@Type bit = NULL)
+AS
+BEGIN
+	IF(@Type IS NULL)
+		SELECT DISTINCT Chess_Game.ID FROM Chess_Game WHERE Termination IS NULL 
+	ELSE IF(@Type = 0)
+		SELECT DISTINCT Chess_Game.ID
+		FROM Chess_Game JOIN Chess_Casual ON Chess_Casual.Game = Chess_Game.ID 
+		WHERE Termination IS NULL
+	ELSE
+		SELECT DISTINCT Chess_Game.ID
+		FROM Chess_Game JOIN Chess_Ranked ON Chess_Ranked.Game = Chess_Game.ID 
+		WHERE Termination IS NULL
+END
+GO
+
+EXEC dbo.pr_getOnGoingGames 
 GO
 
 -- Private
 -- Get FormatID for given Format ClockTime and ClockIncrement
 -- Returns NULL IF Format doesnt exist
+DROP FUNCTION dbo.udf_GetFormatID
+GO
+
 CREATE FUNCTION dbo.udf_GetFormatID (@ClockTime INT, @ClockIncrement INT) RETURNS INT
 AS
 BEGIN
@@ -163,6 +189,12 @@ BEGIN
 END
 GO
 
+DROP FUNCTION dbo.udf_GetAllOpenings
+GO
 
+CREATE FUNCTION dbo.udf_GetAllOpenings() RETURNS TABLE
+AS
+	RETURN SELECT [Name] FROM Chess_Opening
+GO
 
- 
+SELECT * FROM dbo.udf_GetAllOpenings()

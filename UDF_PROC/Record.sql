@@ -1,7 +1,7 @@
-DROP PROC proc_UpdateRankedRecord
+DROP PROC proc_CreateRecord
 GO
 
-CREATE PROC proc_UpdateRankedRecord (@Duration VARCHAR(5), @PGN VARCHAR(MAX), @Termination VARCHAR(64), @OpeningName VARCHAR(128),
+CREATE PROC pr_CreateRecord (@Duration VARCHAR(5), @PGN VARCHAR(MAX), @Termination VARCHAR(64), @OpeningName VARCHAR(128),
 								  @GameID INT, @Result VARCHAR(5))
 AS
 BEGIN
@@ -30,42 +30,53 @@ BEGIN
 			RAISERROR ('Opening doesnt exist', 16, 1)
 
 		DECLARE @PlayersTable TABLE (Username VARCHAR(64), Color VARCHAR(5))
+
 		-- Get Players
-		INSERT INTO @PlayersTable SELECT [User], Color FROM Chess_Ranked WHERE Game = @GameID
-
-		-- Get black current rating
-		SELECT @RBlack = CurrentRating, @PBlack = [User]
-		FROM 
-		Chess_Classified JOIN @PlayersTable ON Chess_Classified.[User] = Username
-		WHERE [Color] = 'BLACK' AND FormatID = @FormatID
-
-		-- Get white current rating
-		SELECT @RWhite = CurrentRating, @PWhite = [User] 
-		FROM 
-		Chess_Classified JOIN @PlayersTable ON Chess_Classified.[User] = Username
-		WHERE [Color] = 'WHITE' AND FormatID = @FormatID
-
-		-- Black wins
-		IF(@Result = 'BLACK')
-			SELECT @NewRBlack = ELOP1, @NewRWhite = ELOP2 FROM dbo.udf_EloRating(@RBlack, @RWhite, 0, @K)
-		-- White wins
-		ELSE IF (@Result = 'WHITE')
-			SELECT @NewRBlack = ELOP1, @NewRWhite = ELOP2 FROM dbo.udf_EloRating(@RBlack, @RWhite, 1, @K)
-		-- Draw 
+		-- Check type
+		
+		-- IF Casual
+		INSERT INTO @PlayersTable SELECT [User], Color FROM Chess_Casual WHERE Game = @GameID
+		IF(@@ROWCOUNT > 0)
+			UPDATE Chess_Game SET Duration = @Duration, PGN = @PGN, Termination = @Termination, Result = @Result, OpeningID = @OpeningID
+				   WHERE Chess_Game.ID = @GameID
+		-- IF Ranked
 		ELSE
 		BEGIN
-			SET @NewRBlack =  @RBlack
-			SET @NewRWhite =  @RWhite
-		END
+			INSERT INTO @PlayersTable SELECT [User], Color FROM Chess_Ranked WHERE Game = @GameID
+
+			-- Get black current rating
+			SELECT @RBlack = CurrentRating, @PBlack = [User]
+			FROM 
+			Chess_Classified JOIN @PlayersTable ON Chess_Classified.[User] = Username
+			WHERE [Color] = 'BLACK' AND FormatID = @FormatID
+
+			-- Get white current rating
+			SELECT @RWhite = CurrentRating, @PWhite = [User] 
+			FROM 
+			Chess_Classified JOIN @PlayersTable ON Chess_Classified.[User] = Username
+			WHERE [Color] = 'WHITE' AND FormatID = @FormatID
+
+			-- Black wins
+			IF(@Result = 'BLACK')
+				SELECT @NewRBlack = ELOP1, @NewRWhite = ELOP2 FROM dbo.udf_EloRating(@RBlack, @RWhite, 0, @K)
+			-- White wins
+			ELSE IF (@Result = 'WHITE')
+				SELECT @NewRBlack = ELOP1, @NewRWhite = ELOP2 FROM dbo.udf_EloRating(@RBlack, @RWhite, 1, @K)
+			-- Draw 
+			ELSE
+			BEGIN
+				SET @NewRBlack =  @RBlack
+				SET @NewRWhite =  @RWhite
+			END
 	
-		--Make updates
-		UPDATE Chess_Ranked SET EarnedRating = (@NewRBlack - @RBlack) WHERE GAME = @GameID AND [USER] = @PBlack
-		UPDATE Chess_Ranked SET EarnedRating = (@NewRWhite - @RWhite) WHERE GAME = @GameID AND [USER] = @PWhite
-		UPDATE Chess_Classified SET CurrentRating = @NEWRBlack WHERE [USER] = @PBlack
-		UPDATE Chess_Classified SET CurrentRating = @NEWRWhite WHERE [USER] = @PWhite
-		UPDATE Chess_Game SET Duration = @Duration, PGN = @PGN, Termination = @Termination, Result = @Result, OpeningID = @OpeningID
-			   WHERE Chess_Game.ID = @GameID
-		
+			--Make updates
+			UPDATE Chess_Ranked SET EarnedRating = (@NewRBlack - @RBlack) WHERE GAME = @GameID AND [USER] = @PBlack
+			UPDATE Chess_Ranked SET EarnedRating = (@NewRWhite - @RWhite) WHERE GAME = @GameID AND [USER] = @PWhite
+			UPDATE Chess_Classified SET CurrentRating = @NEWRBlack WHERE [USER] = @PBlack
+			UPDATE Chess_Classified SET CurrentRating = @NEWRWhite WHERE [USER] = @PWhite
+			UPDATE Chess_Game SET Duration = @Duration, PGN = @PGN, Termination = @Termination, Result = @Result, OpeningID = @OpeningID
+				   WHERE Chess_Game.ID = @GameID
+		END
 		COMMIT TRANSACTION
 	
 	END TRY
@@ -83,17 +94,14 @@ GO
 DECLARE @DURATION VARCHAR(5), @PGN VARCHAR(MAX), @Termination VARCHAR(64),
 	    @OpeningName VARCHAR(128), @GameID INT, @Result VARCHAR(5)
 
-SET @DURATION = '30:00'
+SET @DURATION = '00:30:00'
 SET @PGN = 'PGN test'
-SET @Termination = 'NORMAL'
+SET @Termination = 'NORMAl'
 SET @OpeningName = 'Alekhine Defense'
-SET @GameID = 3054
+SET @GameID = 2952
 SET @Result = 'BLACK'
 
-EXEC proc_UpdateRankedRecord @Duration, @PGN, @Termination, @OpeningName, @GameID, @Result
-
-
-UPDATE Chess_Ranked SET EarnedRating = (1200 - 1180) WHERE GAME = 3053 AND [USER] = 'noasdsad'
+EXEC pr_CreateRecord @Duration, @PGN, @Termination, @OpeningName, @GameID, @Result
 SELECT * FROM Chess_Ranked 
 SELECT * FROM Chess_Casual
 SELECT * FROM Chess_Game

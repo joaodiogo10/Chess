@@ -19,6 +19,7 @@ Public Class Users
         Dim user As User = New User
 
         CN.Open()
+        CMD.CommandType = CommandType.Text
         CMD.CommandText = "SELECT * FROM udf_GetUserInfo(@username)"
         CMD.Parameters.Clear()
         CMD.Parameters.Add("@username", SqlDbType.VarChar, 64).Value = username
@@ -43,6 +44,7 @@ Public Class Users
         Return User
     End Function
     Sub LoadUsers()
+        CMD.CommandType = CommandType.Text
         CMD.CommandText = "SELECT * FROM udf_GetUsersInfo()"
         CN.Open()
         Dim RDR As SqlDataReader
@@ -67,6 +69,7 @@ Public Class Users
     Sub LoadFriends(user As User)
         CN.Open()
         CMD.Parameters.Clear()
+        CMD.CommandType = CommandType.Text
         CMD.CommandText = "SELECT * FROM udf_GetUserFriends(@username)"
         CMD.Parameters.Add("@username", SqlDbType.VarChar, 64).Value = user.Username
         Dim RDR As SqlDataReader
@@ -83,6 +86,7 @@ Public Class Users
         CN.Open()
 
         CMD.CommandText = "SELECT * FROM udf_GetUserTeams(@username)"
+        CMD.CommandType = CommandType.Text
         CMD.Parameters.Clear()
         CMD.Parameters.Add("@username", SqlDbType.VarChar, 64).Value = user.Username
         Dim RDR As SqlDataReader
@@ -122,4 +126,5 @@ Public Class Users
             ShowUser(user)
         End If
     End Sub
+
 End Class

@@ -5,7 +5,9 @@
     Private _duration As String
     Private _pgn As String
     Private _date As String
-    Private _outcome As String
+    Private _time As String
+    Private _termination As String
+    Private _result As String
     Private _formatName As String
     Private _ClockTime As String
     Private _ClockIncrement As String
@@ -69,12 +71,29 @@
         End Set
     End Property
 
-    Public Property Outcome As String
+    Public Property GameTime As String
         Get
-            Return _outcome
+            Return _time
         End Get
         Set(value As String)
-            _outcome = value
+            _time = value
+        End Set
+    End Property
+    Public Property Termination As String
+        Get
+            Return _termination
+        End Get
+        Set(value As String)
+            _termination = value
+        End Set
+    End Property
+
+    Public Property Result As String
+        Get
+            Return _result
+        End Get
+        Set(value As String)
+            _result = value
         End Set
     End Property
 
@@ -150,22 +169,25 @@
         End Set
     End Property
 
-    Public Sub New(gameID As UInteger, black As String, white As String, duration As String, pgn As String, [date] As String, outcome As String, formatName As String, clockTime As String, clockIncrement As String, openingECOCode As String, openingName As String, openingPattern As String, tournamentName As String, tournamentDate As String)
-        Me.GameID = gameID
-        Me.Black = black
-        Me.White = white
-        Me.Duration = duration
-        Me.Pgn = pgn
-        Me.GameDate = [date]
-        Me.Outcome = outcome
-        Me.FormatName = formatName
-        Me.ClockTime = clockTime
-        Me.ClockIncrement = clockIncrement
-        Me.OpeningECOCode = openingECOCode
-        Me.OpeningName = openingName
-        Me.OpeningPattern = openingPattern
-        Me.TournamentName = tournamentName
-        Me.TournamentDate = tournamentDate
+
+    Public Sub New(gameID As UInteger, black As String, white As String, duration As String, pgn As String, [date] As String, [time] As String, termination As String, result As String, formatName As String, clockTime As String, clockIncrement As String, openingECOCode As String, openingName As String, openingPattern As String, tournamentName As String, tournamentDate As String)
+        _gameID = gameID
+        _black = black
+        _white = white
+        _duration = duration
+        _pgn = pgn
+        _date = [date]
+        _time = [time]
+        _termination = termination
+        _result = result
+        _formatName = formatName
+        _ClockTime = clockTime
+        _ClockIncrement = clockIncrement
+        _openingECOCode = openingECOCode
+        _openingName = openingName
+        _openingPattern = openingPattern
+        _tournamentName = tournamentName
+        _tournamentDate = tournamentDate
     End Sub
 
     Public Sub New()

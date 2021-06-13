@@ -1,3 +1,6 @@
+USE Chess
+GO
+
 DROP TABLE Chess_PuzzleRecord
 DROP TABLE Chess_PuzzleTheme
 DROP TABLE Chess_Puzzle
@@ -166,7 +169,7 @@ CREATE TABLE Chess_Theme (
 -- Adcionei Result
 CREATE TABLE Chess_Game (
 	ID				INT IDENTITY(1,1),
-	Duration		VARCHAR(5),
+	Duration		TIME,
 	PGN				VARCHAR(MAX),
 	[Date]			DATE NOT NULL,
 	[Time]			TIME NOT NULL,
