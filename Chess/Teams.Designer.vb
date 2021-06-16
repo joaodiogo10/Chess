@@ -44,24 +44,26 @@ Partial Class Teams
         'LabelSearchTeam
         '
         Me.LabelSearchTeam.AutoSize = True
-        Me.LabelSearchTeam.Location = New System.Drawing.Point(26, 9)
+        Me.LabelSearchTeam.Location = New System.Drawing.Point(30, 12)
         Me.LabelSearchTeam.Name = "LabelSearchTeam"
-        Me.LabelSearchTeam.Size = New System.Drawing.Size(121, 15)
+        Me.LabelSearchTeam.Size = New System.Drawing.Size(152, 20)
         Me.LabelSearchTeam.TabIndex = 20
         Me.LabelSearchTeam.Text = "Search by team name"
         '
         'TextBoxSearchTeam
         '
-        Me.TextBoxSearchTeam.Location = New System.Drawing.Point(26, 27)
+        Me.TextBoxSearchTeam.Location = New System.Drawing.Point(30, 36)
+        Me.TextBoxSearchTeam.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxSearchTeam.Name = "TextBoxSearchTeam"
-        Me.TextBoxSearchTeam.Size = New System.Drawing.Size(208, 23)
+        Me.TextBoxSearchTeam.Size = New System.Drawing.Size(237, 27)
         Me.TextBoxSearchTeam.TabIndex = 21
         '
         'ButtonSearchTeam
         '
-        Me.ButtonSearchTeam.Location = New System.Drawing.Point(240, 27)
+        Me.ButtonSearchTeam.Location = New System.Drawing.Point(274, 36)
+        Me.ButtonSearchTeam.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ButtonSearchTeam.Name = "ButtonSearchTeam"
-        Me.ButtonSearchTeam.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonSearchTeam.Size = New System.Drawing.Size(86, 31)
         Me.ButtonSearchTeam.TabIndex = 22
         Me.ButtonSearchTeam.Text = "Search"
         Me.ButtonSearchTeam.UseVisualStyleBackColor = True
@@ -69,9 +71,9 @@ Partial Class Teams
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(26, 64)
+        Me.Label1.Location = New System.Drawing.Point(30, 85)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(40, 15)
+        Me.Label1.Size = New System.Drawing.Size(51, 20)
         Me.Label1.TabIndex = 23
         Me.Label1.Text = "Teams"
         '
@@ -79,53 +81,55 @@ Partial Class Teams
         '
         Me.ListBoxTeams.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.ListBoxTeams.FormattingEnabled = True
-        Me.ListBoxTeams.ItemHeight = 15
-        Me.ListBoxTeams.Location = New System.Drawing.Point(26, 82)
+        Me.ListBoxTeams.ItemHeight = 20
+        Me.ListBoxTeams.Location = New System.Drawing.Point(30, 109)
+        Me.ListBoxTeams.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ListBoxTeams.Name = "ListBoxTeams"
-        Me.ListBoxTeams.Size = New System.Drawing.Size(289, 229)
+        Me.ListBoxTeams.Size = New System.Drawing.Size(330, 304)
         Me.ListBoxTeams.TabIndex = 24
         '
         'LabelLeader
         '
         Me.LabelLeader.AutoSize = True
-        Me.LabelLeader.Location = New System.Drawing.Point(332, 81)
+        Me.LabelLeader.Location = New System.Drawing.Point(379, 108)
         Me.LabelLeader.Name = "LabelLeader"
-        Me.LabelLeader.Size = New System.Drawing.Size(42, 15)
+        Me.LabelLeader.Size = New System.Drawing.Size(54, 20)
         Me.LabelLeader.TabIndex = 25
         Me.LabelLeader.Text = "Leader"
         '
         'TextBoxLeader
         '
-        Me.TextBoxLeader.Location = New System.Drawing.Point(332, 99)
+        Me.TextBoxLeader.Location = New System.Drawing.Point(379, 132)
+        Me.TextBoxLeader.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxLeader.Name = "TextBoxLeader"
         Me.TextBoxLeader.ReadOnly = True
-        Me.TextBoxLeader.Size = New System.Drawing.Size(245, 23)
+        Me.TextBoxLeader.Size = New System.Drawing.Size(279, 27)
         Me.TextBoxLeader.TabIndex = 26
         '
         'LabelMembers
         '
         Me.LabelMembers.AutoSize = True
-        Me.LabelMembers.Location = New System.Drawing.Point(332, 140)
+        Me.LabelMembers.Location = New System.Drawing.Point(379, 187)
         Me.LabelMembers.Name = "LabelMembers"
-        Me.LabelMembers.Size = New System.Drawing.Size(57, 15)
+        Me.LabelMembers.Size = New System.Drawing.Size(71, 20)
         Me.LabelMembers.TabIndex = 27
         Me.LabelMembers.Text = "Members"
         '
         'ListBoxMembers
         '
         Me.ListBoxMembers.FormattingEnabled = True
-        Me.ListBoxMembers.ItemHeight = 15
-        Me.ListBoxMembers.Location = New System.Drawing.Point(332, 158)
+        Me.ListBoxMembers.ItemHeight = 20
+        Me.ListBoxMembers.Location = New System.Drawing.Point(379, 211)
+        Me.ListBoxMembers.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ListBoxMembers.Name = "ListBoxMembers"
-        Me.ListBoxMembers.Size = New System.Drawing.Size(245, 154)
+        Me.ListBoxMembers.Size = New System.Drawing.Size(279, 204)
         Me.ListBoxMembers.TabIndex = 28
         '
         'ButtonAddMember
         '
-        Me.ButtonAddMember.Location = New System.Drawing.Point(26, 340)
-        Me.ButtonAddMember.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.ButtonAddMember.Location = New System.Drawing.Point(30, 454)
         Me.ButtonAddMember.Name = "ButtonAddMember"
-        Me.ButtonAddMember.Size = New System.Drawing.Size(116, 32)
+        Me.ButtonAddMember.Size = New System.Drawing.Size(133, 43)
         Me.ButtonAddMember.TabIndex = 29
         Me.ButtonAddMember.Text = "Add Member"
         Me.ButtonAddMember.UseVisualStyleBackColor = True
@@ -133,75 +137,71 @@ Partial Class Teams
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(598, 81)
+        Me.Label2.Location = New System.Drawing.Point(684, 108)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(89, 15)
+        Me.Label2.Size = New System.Drawing.Size(113, 20)
         Me.Label2.TabIndex = 30
         Me.Label2.Text = "Member to add"
         '
         'TextBoxMemberAdd
         '
-        Me.TextBoxMemberAdd.Location = New System.Drawing.Point(598, 99)
+        Me.TextBoxMemberAdd.Location = New System.Drawing.Point(684, 132)
+        Me.TextBoxMemberAdd.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxMemberAdd.Name = "TextBoxMemberAdd"
         Me.TextBoxMemberAdd.ReadOnly = True
-        Me.TextBoxMemberAdd.Size = New System.Drawing.Size(245, 23)
+        Me.TextBoxMemberAdd.Size = New System.Drawing.Size(279, 27)
         Me.TextBoxMemberAdd.TabIndex = 31
         '
         'ButtonOk
         '
-        Me.ButtonOk.Location = New System.Drawing.Point(708, 340)
-        Me.ButtonOk.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.ButtonOk.Location = New System.Drawing.Point(809, 454)
         Me.ButtonOk.Name = "ButtonOk"
-        Me.ButtonOk.Size = New System.Drawing.Size(116, 32)
+        Me.ButtonOk.Size = New System.Drawing.Size(133, 43)
         Me.ButtonOk.TabIndex = 32
         Me.ButtonOk.Text = "Ok"
         Me.ButtonOk.UseVisualStyleBackColor = True
         '
         'ButtonCancel
         '
-        Me.ButtonCancel.Location = New System.Drawing.Point(581, 340)
-        Me.ButtonCancel.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.ButtonCancel.Location = New System.Drawing.Point(664, 454)
         Me.ButtonCancel.Name = "ButtonCancel"
-        Me.ButtonCancel.Size = New System.Drawing.Size(116, 32)
+        Me.ButtonCancel.Size = New System.Drawing.Size(133, 43)
         Me.ButtonCancel.TabIndex = 33
         Me.ButtonCancel.Text = "Cancel"
         Me.ButtonCancel.UseVisualStyleBackColor = True
         '
         'ButtonDeleteMember
         '
-        Me.ButtonDeleteMember.Location = New System.Drawing.Point(148, 340)
-        Me.ButtonDeleteMember.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.ButtonDeleteMember.Location = New System.Drawing.Point(169, 454)
         Me.ButtonDeleteMember.Name = "ButtonDeleteMember"
-        Me.ButtonDeleteMember.Size = New System.Drawing.Size(116, 32)
+        Me.ButtonDeleteMember.Size = New System.Drawing.Size(133, 43)
         Me.ButtonDeleteMember.TabIndex = 34
         Me.ButtonDeleteMember.Text = "Delete Member"
         Me.ButtonDeleteMember.UseVisualStyleBackColor = True
         '
         'ButtonChangeLeader
         '
-        Me.ButtonChangeLeader.Location = New System.Drawing.Point(270, 340)
-        Me.ButtonChangeLeader.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.ButtonChangeLeader.Location = New System.Drawing.Point(308, 454)
         Me.ButtonChangeLeader.Name = "ButtonChangeLeader"
-        Me.ButtonChangeLeader.Size = New System.Drawing.Size(116, 32)
+        Me.ButtonChangeLeader.Size = New System.Drawing.Size(133, 43)
         Me.ButtonChangeLeader.TabIndex = 35
         Me.ButtonChangeLeader.Text = "Change Leader"
         Me.ButtonChangeLeader.UseVisualStyleBackColor = True
         '
         'ButtonDeleteTeam
         '
-        Me.ButtonDeleteTeam.Location = New System.Drawing.Point(148, 399)
-        Me.ButtonDeleteTeam.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.ButtonDeleteTeam.Location = New System.Drawing.Point(169, 532)
         Me.ButtonDeleteTeam.Name = "ButtonDeleteTeam"
-        Me.ButtonDeleteTeam.Size = New System.Drawing.Size(116, 32)
+        Me.ButtonDeleteTeam.Size = New System.Drawing.Size(133, 43)
         Me.ButtonDeleteTeam.TabIndex = 36
         Me.ButtonDeleteTeam.Text = "Delete Team"
         Me.ButtonDeleteTeam.UseVisualStyleBackColor = True
         '
         'Teams
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(854, 507)
+        Me.ClientSize = New System.Drawing.Size(976, 676)
         Me.Controls.Add(Me.ButtonDeleteTeam)
         Me.Controls.Add(Me.ButtonChangeLeader)
         Me.Controls.Add(Me.ButtonDeleteMember)
@@ -219,7 +219,6 @@ Partial Class Teams
         Me.Controls.Add(Me.ButtonSearchTeam)
         Me.Controls.Add(Me.TextBoxSearchTeam)
         Me.Controls.Add(Me.LabelSearchTeam)
-        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "Teams"
         Me.Text = "Teams"
         Me.ResumeLayout(False)
