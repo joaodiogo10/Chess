@@ -7,6 +7,7 @@ Public Class Games
     Dim currentGameID As String
     Dim currentOnGoingMatch As Integer
     Dim declareMatch As GamesDeclareMatch
+    Dim newGame As GamesNewGame
 
     Sub New(CN As SqlConnection, CMD As SqlCommand)
         InitializeComponent()
@@ -37,7 +38,8 @@ Public Class Games
             game.GameID = RDR.Item("gameid")
             game.Black = RDR.Item("black")
             game.White = RDR.Item("white")
-            game.Duration = Convert.ToString(IIf(RDR.IsDBNull(RDR.GetOrdinal("duration")), "None", RDR.Item("formatname")))
+            game.Type = RDR.Item("type")
+            game.Duration = Convert.ToString(IIf(RDR.IsDBNull(RDR.GetOrdinal("duration")), "None", RDR.Item("duration")))
             game.Pgn = Convert.ToString(IIf(RDR.IsDBNull(RDR.GetOrdinal("pgn")), "None", RDR.Item("pgn")))
             game.GameDate = RDR.Item("date")
             game.GameTime = Convert.ToString(RDR.Item("time"))
@@ -49,6 +51,7 @@ Public Class Games
             game.OpeningECOCode = Convert.ToString(IIf(RDR.IsDBNull(RDR.GetOrdinal("openingecocode")), "None", RDR.Item("openingecocode")))
             game.OpeningName = Convert.ToString(IIf(RDR.IsDBNull(RDR.GetOrdinal("openingname")), "None", RDR.Item("openingname")))
             game.OpeningPattern = Convert.ToString(IIf(RDR.IsDBNull(RDR.GetOrdinal("openingpattern")), "None", RDR.Item("openingpattern")))
+            game.Pgn = Convert.ToString(IIf(RDR.IsDBNull(RDR.GetOrdinal("pgn")), "None", RDR.Item("pgn")))
             CN.Close()
 
             game.TournamentName = Convert.ToString(IIf(IsDBNull(CMD.Parameters("@tournamentname").Value), "None", CMD.Parameters("@tournamentname").Value))
@@ -59,7 +62,7 @@ Public Class Games
             CN.Close()
 
             game = Nothing
-            MsgBox("game not found")
+            MsgBox("Game not found")
         End If
         Return game
     End Function
@@ -69,7 +72,7 @@ Public Class Games
         CMD.CommandText = "dbo.pr_getOnGoingGames"
         CMD.CommandType = CommandType.StoredProcedure
         CMD.Parameters.Clear()
-        CMD.Parameters.Add("@type", SqlDbType.Bit).Value = 1
+
 
         Dim RDR As SqlDataReader
         RDR = CMD.ExecuteReader
@@ -95,6 +98,8 @@ Public Class Games
         TextBoxClockTime.Text = game.ClockTime
         TextBoxClockIncrement.Text = game.ClockIncrement
         LabelGameID.Text = currentGameID
+        LabelType.Text = game.Type
+        TextBoxPGN.Text = game.Pgn
 
         If (game.Termination <> "None") Then
             ButtonDeclareMatch.Visible = False
@@ -132,5 +137,66 @@ Public Class Games
             declareMatch.ShowDialog()
             LoadOnGoingMatches()
         End If
+    End Sub
+
+    Private Sub ButtonNewGame_Click(sender As Object, e As EventArgs) Handles ButtonNewGame.Click
+        newGame = New GamesNewGame(CN, CMD)
+        newGame.ShowDialog()
+    End Sub
+
+    Private Sub TextBoxWhite_TextChanged(sender As Object, e As EventArgs) Handles TextBoxWhite.TextChanged
+
+    End Sub
+
+    Private Sub TextBoxDateGame_TextChanged(sender As Object, e As EventArgs) Handles TextBoxDateGame.TextChanged
+
+    End Sub
+
+    Private Sub TextBoxDuration_TextChanged(sender As Object, e As EventArgs) Handles TextBoxDuration.TextChanged
+
+    End Sub
+
+    Private Sub TextBoxTermination_TextChanged(sender As Object, e As EventArgs) Handles TextBoxTermination.TextChanged
+
+    End Sub
+
+    Private Sub TextBoxWinner_TextChanged(sender As Object, e As EventArgs) Handles TextBoxWinner.TextChanged
+
+    End Sub
+
+    Private Sub TextBoxTime_TextChanged(sender As Object, e As EventArgs) Handles TextBoxTime.TextChanged
+
+    End Sub
+
+    Private Sub TextBoxOpeningCode_TextChanged(sender As Object, e As EventArgs) Handles TextBoxOpeningCode.TextChanged
+
+    End Sub
+
+    Private Sub TextBoxOpeningName_TextChanged(sender As Object, e As EventArgs) Handles TextBoxOpeningName.TextChanged
+
+    End Sub
+
+    Private Sub TextBoxFormat_TextChanged(sender As Object, e As EventArgs) Handles TextBoxFormat.TextChanged
+
+    End Sub
+
+    Private Sub TextBoxPGN_TextChanged(sender As Object, e As EventArgs) Handles TextBoxPGN.TextChanged
+
+    End Sub
+
+    Private Sub TextBoxClockTime_TextChanged(sender As Object, e As EventArgs) Handles TextBoxClockTime.TextChanged
+
+    End Sub
+
+    Private Sub TextBoxClockIncrement_TextChanged(sender As Object, e As EventArgs) Handles TextBoxClockIncrement.TextChanged
+
+    End Sub
+
+    Private Sub TextBoxDateTournament_TextChanged(sender As Object, e As EventArgs) Handles TextBoxDateTournament.TextChanged
+
+    End Sub
+
+    Private Sub TextBoxTournamentName_TextChanged(sender As Object, e As EventArgs) Handles TextBoxTournamentName.TextChanged
+
     End Sub
 End Class
