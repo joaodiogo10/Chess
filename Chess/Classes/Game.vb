@@ -1,5 +1,6 @@
 ﻿Public Class Game
     Private _gameID As UInt32
+    Private _type As String
     Private _black As String
     Private _white As String
     Private _duration As String
@@ -26,6 +27,14 @@
         End Set
     End Property
 
+    Public Property Type As String
+        Get
+            Return _type
+        End Get
+        Set(value As String)
+            _type = value
+        End Set
+    End Property
     Public Property Black As String
         Get
             Return _black
@@ -170,8 +179,9 @@
     End Property
 
 
-    Public Sub New(gameID As UInteger, black As String, white As String, duration As String, pgn As String, [date] As String, [time] As String, termination As String, result As String, formatName As String, clockTime As String, clockIncrement As String, openingECOCode As String, openingName As String, openingPattern As String, tournamentName As String, tournamentDate As String)
+    Public Sub New(gameID As UInteger, black As String, white As String, duration As String, pgn As String, [date] As String, [time] As String, termination As String, result As String, formatName As String, clockTime As String, clockIncrement As String, openingECOCode As String, openingName As String, openingPattern As String, tournamentName As String, tournamentDate As String, type As String)
         _gameID = gameID
+        _type = type
         _black = black
         _white = white
         _duration = duration
