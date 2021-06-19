@@ -175,14 +175,23 @@ Public Class Teams
         CMD.Parameters.Clear()
         CMD.CommandText = "dbo.pr_AddTeamMember"
         CMD.CommandType = CommandType.StoredProcedure
+        Dim retValParam As New SqlParameter("@RETURN_VALUE", SqlDbType.Int)
+        retValParam.Direction = ParameterDirection.ReturnValue
         CMD.Parameters.Add("@teamName", SqlDbType.VarChar, 128).Value = team.Name
         CMD.Parameters.Add("@userName", SqlDbType.VarChar, 64).Value = userName
+        CMD.Parameters.Add(retValParam)
+        Dim retVal As Integer
 
         CN.Open()
         Try
             CMD.ExecuteNonQuery()
+            retVal = Convert.ToInt32(retValParam.Value)
+            If (retVal = -100) Then
+                MsgBox("User is already a member")
+            End If
         Catch ex As Exception
-            Throw New Exception("Failed to add member in database. " & vbCrLf & "ERROR MESSAGE: " & vbCrLf & ex.Message)
+            'Por aqui uma mensagem melhor ???
+            MsgBox("Failed to add member in database. " & vbCrLf & "ERROR MESSAGE: " & vbCrLf & ex.Message)
         Finally
             CMD.CommandType = CommandType.Text
             CN.Close()
@@ -194,13 +203,21 @@ Public Class Teams
         CMD.Parameters.Clear()
         CMD.CommandText = "dbo.pr_DeleteTeamMember"
         CMD.CommandType = CommandType.StoredProcedure
+        Dim retValParam As New SqlParameter("@RETURN_VALUE", SqlDbType.Int)
+        retValParam.Direction = ParameterDirection.ReturnValue
         CMD.Parameters.Add("@teamName", SqlDbType.VarChar, 128).Value = team.Name
         CMD.Parameters.Add("@userName", SqlDbType.VarChar, 64).Value = userName
+        CMD.Parameters.Add(retValParam)
+        Dim retVal As Integer
         CN.Open()
         Try
             CMD.ExecuteNonQuery()
+            retVal = Convert.ToInt32(retValParam.Value)
+            If (retVal = -100) Then
+                MsgBox("Leader cannot be removed")
+            End If
         Catch ex As Exception
-            Throw New Exception("Failed to delete member in database. " & vbCrLf & "ERROR MESSAGE: " & vbCrLf & ex.Message)
+            MsgBox("Failed to delete member in database. " & vbCrLf & "ERROR MESSAGE: " & vbCrLf & ex.Message)
         Finally
             CMD.CommandType = CommandType.Text
             CN.Close()
@@ -218,7 +235,7 @@ Public Class Teams
         Try
             CMD.ExecuteNonQuery()
         Catch ex As Exception
-            Throw New Exception("Failed to change leader in database. " & vbCrLf & "ERROR MESSAGE: " & vbCrLf & ex.Message)
+            MsgBox("Failed to change leader in database. " & vbCrLf & "ERROR MESSAGE: " & vbCrLf & ex.Message)
         Finally
             CMD.CommandType = CommandType.Text
             CN.Close()
@@ -232,11 +249,12 @@ Public Class Teams
         CMD.CommandText = "dbo.pr_DeleteTeam"
         CMD.CommandType = CommandType.StoredProcedure
         CMD.Parameters.Add("@teamName", SqlDbType.VarChar, 128).Value = team.Name
+
         CN.Open()
         Try
             CMD.ExecuteNonQuery()
         Catch ex As Exception
-            Throw New Exception("Failed to delete the team. " & vbCrLf & "ERROR MESSAGE: " & vbCrLf & ex.Message)
+            MsgBox("Failed to delete the team. " & vbCrLf & "ERROR MESSAGE: " & vbCrLf & ex.Message)
         Finally
             CMD.CommandType = CommandType.Text
             CN.Close()
