@@ -1,14 +1,8 @@
 -- Chess_Classified: Adicionar index para User ?
 -- Chess_Members: user ?
 -- Chess_Friends: user ?
--- Chess_User: password indice coberto
--- CREATE INDEX ixGuideCovering ON dbo.Guide (LastName, FirstName)
--- INCLUDE (Title);
 Chess_Ranked e Chess_Casual: Adicionar index para User
 
 
 xx Chess_Opening: Adicionar Index para name
 -- nao pq é unique e ele cria um indice automaticamente
-
--- 
-Chess_Game: Indices para termination = NULL? 

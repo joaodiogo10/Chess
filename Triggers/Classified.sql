@@ -23,7 +23,6 @@ BEGIN
 END
 GO
 
--- Missing position
 CREATE TRIGGER tr_onClassifiedInsert ON Chess_Classified
 INSTEAD OF INSERT
 AS

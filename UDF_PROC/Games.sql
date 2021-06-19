@@ -73,7 +73,7 @@ BEGIN
 END
 GO
 /*
-Test
+Test 
 DECLARE @TournamentName VARCHAR(64)
 DECLARE @TournamentDate DATE
 DECLARE @TournamentTime TIME
@@ -83,7 +83,6 @@ SELECT @TournamentName
 SELECT @TournamentDate
 GO
 */
-
 -- Create new Game of given format (of given tournament opcional)
 -- Create new GameRecords
 -- Inputs: ClockTime, ClockIncrement, Player name playing black, Player name playing white
@@ -153,7 +152,7 @@ BEGIN
 END
 GO
 
-/* Test 
+/* Test */
 --Casual
 EXEC pr_NewGame 3, 0, 'maximederkek', 'bahodiraxmedov', NULL, 0
 --Ranked
@@ -162,8 +161,8 @@ SELECT * FROM Chess_Game
 SELECT * FROM Chess_Casual
 SELECT * FROM Chess_Ranked
 SELECT * FROM Chess_Classified
+
 GO
-*/
 
 -- Indices para termination = NULL? ou para date
 -- Input: Type 0 - casual; 1 - ranked; NULL - both 
