@@ -22,7 +22,7 @@ Go
 
 CREATE TABLE Chess_User (
 	Username				 VARCHAR(64) NOT NULL,
-	[Password]				 VARCHAR(64) NOT NULL,
+	[Password]				 BINARY(32) NOT NULL,
 	[Name]					 VARCHAR(128) NOT NULL,
 	Country					 VARCHAR(64) NOT NULL,
 	Email					 VARCHAR(128) UNIQUE NOT NULL,
@@ -180,7 +180,7 @@ CREATE TABLE Chess_Game (
 	TournamentID	INT,
 	PRIMARY KEY(ID),
 	CHECK (Result = 'BLACK' OR Result = 'WHITE' OR RESULT = 'DRAW'),
-	CHECK (termination = 'TIME FORFEIT' OR termination = 'NORMAL' OR termination = 'ABANDONED')
+	-- CHECK (termination = 'TIME FORFEIT' OR termination = 'NORMAL' OR termination = 'ABANDONED' OR termination = 'RULES INFRACTION')
 )
 
 CREATE TABLE Chess_Opening (

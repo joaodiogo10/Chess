@@ -1,14 +1,14 @@
-Chess_Team: Adicionar index para Leader?
-Chess_Tournamet: Adicionar trigger para Name e Date no tournament?
-Chess_Record: Adicionar index para Game
-Chess_Classified: Adicionar index para User ?
-Chess_Ranked e Chess_Casual: Adicionar index para User, Game
-Chess_Opening: Adicionar Index para name
-Chess_Game: Indices para termination = NULL? ou para date
-UPDATE Current_Rating
-UPDATE Game
+-- Chess_Classified: Adicionar index para User ?
+-- Chess_Members: user ?
+-- Chess_Friends: user ?
+-- Chess_User: password indice coberto
+-- CREATE INDEX ixGuideCovering ON dbo.Guide (LastName, FirstName)
+-- INCLUDE (Title);
+Chess_Ranked e Chess_Casual: Adicionar index para User
 
-CORRIGIR Chess_Ranked e Chess_Casual gameID
 
-CORRIGIR TRIGGERS para funcionarem qnd se insere um conjunto
-CORRIGIR Duration no game
+xx Chess_Opening: Adicionar Index para name
+-- nao pq é unique e ele cria um indice automaticamente
+
+-- 
+Chess_Game: Indices para termination = NULL? 

@@ -1,4 +1,4 @@
-DROP TRIGGER tr_onUserInserted
+/* DROP TRIGGER tr_onUserInserted
 GO
 
 CREATE TRIGGER tr_onUserInserted ON dbo.Chess_User
@@ -19,3 +19,4 @@ BEGIN
 	INSERT INTO Chess_Classified ([User], FormatID) SELECT * FROM @classifiedTable
 END
 GO	
+*/

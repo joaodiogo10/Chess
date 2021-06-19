@@ -145,7 +145,7 @@ BEGIN
 	END CATCH
 END
 GO
-/* Test */
+/* Test 
 DECLARE @DURATION VARCHAR(5), @PGN VARCHAR(MAX), @Termination VARCHAR(64),
 	    @OpeningName VARCHAR(128), @GameID INT, @Result VARCHAR(5)
 SET @DURATION = '00:30:00'
@@ -161,3 +161,4 @@ SELECT * FROM Chess_Casual
 SELECT * FROM Chess_Game
 SELECT * FROM Chess_Classified WHERE [User] = 'LuckyLucker' OR [User] = 'yassinetaoufiki'
 GO
+*/

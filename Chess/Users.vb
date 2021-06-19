@@ -54,7 +54,6 @@ Public Class Users
             Dim User As New User With {
                 .Username = RDR.Item("Username"),
                 .Name = RDR.Item("Name"),
-                .Password = RDR.Item("Password"),
                 .Country = RDR.Item("Country"),
                 .Email = RDR.Item("Email"),
                 .RegistrationDate = RDR.Item("RegistrationDate"),
@@ -103,7 +102,6 @@ Public Class Users
     Sub ShowUser(user As User)
         TextBoxUsername.Text = user.Username
         TextBoxName.Text = user.Name
-        TextBoxPassword.Text = user.Password
         TextBoxCountry.Text = user.Country
         TextBoxEmail.Text = user.Email
         TextBoxRegistrationDate.Text = user.RegistrationDate

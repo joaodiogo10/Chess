@@ -27,8 +27,6 @@ Partial Class Users
         Me.LabelUsername = New System.Windows.Forms.Label()
         Me.LabelEmail = New System.Windows.Forms.Label()
         Me.TextBoxEmail = New System.Windows.Forms.TextBox()
-        Me.LabelPassword = New System.Windows.Forms.Label()
-        Me.TextBoxPassword = New System.Windows.Forms.TextBox()
         Me.LabelCountry = New System.Windows.Forms.Label()
         Me.TextBoxCountry = New System.Windows.Forms.TextBox()
         Me.LabelRegistrationDate = New System.Windows.Forms.Label()
@@ -45,6 +43,8 @@ Partial Class Users
         Me.ButtonSearchUser = New System.Windows.Forms.Button()
         Me.LabelTeams = New System.Windows.Forms.Label()
         Me.ListBoxTeams = New System.Windows.Forms.ListBox()
+        Me.TextBoxPassword = New System.Windows.Forms.TextBox()
+        Me.LabelPassword = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ListBoxUsers
@@ -88,23 +88,6 @@ Partial Class Users
         Me.TextBoxEmail.Size = New System.Drawing.Size(245, 23)
         Me.TextBoxEmail.TabIndex = 3
         '
-        'LabelPassword
-        '
-        Me.LabelPassword.AutoSize = True
-        Me.LabelPassword.Location = New System.Drawing.Point(583, 81)
-        Me.LabelPassword.Name = "LabelPassword"
-        Me.LabelPassword.Size = New System.Drawing.Size(57, 15)
-        Me.LabelPassword.TabIndex = 6
-        Me.LabelPassword.Text = "Password"
-        '
-        'TextBoxPassword
-        '
-        Me.TextBoxPassword.Location = New System.Drawing.Point(583, 99)
-        Me.TextBoxPassword.Name = "TextBoxPassword"
-        Me.TextBoxPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.TextBoxPassword.Size = New System.Drawing.Size(172, 23)
-        Me.TextBoxPassword.TabIndex = 5
-        '
         'LabelCountry
         '
         Me.LabelCountry.AutoSize = True
@@ -124,7 +107,7 @@ Partial Class Users
         'LabelRegistrationDate
         '
         Me.LabelRegistrationDate.AutoSize = True
-        Me.LabelRegistrationDate.Location = New System.Drawing.Point(332, 258)
+        Me.LabelRegistrationDate.Location = New System.Drawing.Point(583, 81)
         Me.LabelRegistrationDate.Name = "LabelRegistrationDate"
         Me.LabelRegistrationDate.Size = New System.Drawing.Size(97, 15)
         Me.LabelRegistrationDate.TabIndex = 12
@@ -132,9 +115,9 @@ Partial Class Users
         '
         'TextBoxRegistrationDate
         '
-        Me.TextBoxRegistrationDate.Location = New System.Drawing.Point(332, 276)
+        Me.TextBoxRegistrationDate.Location = New System.Drawing.Point(583, 99)
         Me.TextBoxRegistrationDate.Name = "TextBoxRegistrationDate"
-        Me.TextBoxRegistrationDate.Size = New System.Drawing.Size(245, 23)
+        Me.TextBoxRegistrationDate.Size = New System.Drawing.Size(172, 23)
         Me.TextBoxRegistrationDate.TabIndex = 11
         '
         'LabelName
@@ -239,6 +222,23 @@ Partial Class Users
         Me.ListBoxTeams.Size = New System.Drawing.Size(245, 154)
         Me.ListBoxTeams.TabIndex = 21
         '
+        'TextBoxPassword
+        '
+        Me.TextBoxPassword.Location = New System.Drawing.Point(583, 99)
+        Me.TextBoxPassword.Name = "TextBoxPassword"
+        Me.TextBoxPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.TextBoxPassword.Size = New System.Drawing.Size(172, 23)
+        Me.TextBoxPassword.TabIndex = 5
+        '
+        'LabelPassword
+        '
+        Me.LabelPassword.AutoSize = True
+        Me.LabelPassword.Location = New System.Drawing.Point(583, 81)
+        Me.LabelPassword.Name = "LabelPassword"
+        Me.LabelPassword.Size = New System.Drawing.Size(57, 15)
+        Me.LabelPassword.TabIndex = 6
+        Me.LabelPassword.Text = "Password"
+        '
         'Users
         '
         Me.AccessibleDescription = ""
@@ -263,8 +263,6 @@ Partial Class Users
         Me.Controls.Add(Me.TextBoxName)
         Me.Controls.Add(Me.LabelCountry)
         Me.Controls.Add(Me.TextBoxCountry)
-        Me.Controls.Add(Me.LabelPassword)
-        Me.Controls.Add(Me.TextBoxPassword)
         Me.Controls.Add(Me.LabelEmail)
         Me.Controls.Add(Me.TextBoxEmail)
         Me.Controls.Add(Me.LabelUsername)
@@ -279,8 +277,6 @@ Partial Class Users
 
     Friend WithEvents ListBoxUsers As ListBox
     Friend WithEvents LabelUsername As Label
-    Friend WithEvents LabelPassword As Label
-    Friend WithEvents TextBoxPassword As TextBox
     Friend WithEvents TextBoxCountry As TextBox
     Friend WithEvents TextBoxUsername As TextBox
     Friend WithEvents LabelEmail As Label
@@ -300,4 +296,6 @@ Partial Class Users
     Friend WithEvents ButtonSearchUser As Button
     Friend WithEvents LabelTeams As Label
     Friend WithEvents ListBoxTeams As ListBox
+    Friend WithEvents TextBoxPassword As TextBox
+    Friend WithEvents LabelPassword As Label
 End Class

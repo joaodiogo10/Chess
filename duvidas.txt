@@ -1,4 +1,0 @@
-bulk insert (classified current e max rating)
-transacoes
-tratamento de error
-tabela classified -> position

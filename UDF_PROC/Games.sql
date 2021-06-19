@@ -92,6 +92,7 @@ GO
 -- Ver se ja esta num jogo
 
 -- TRANSACTION ??
+
 CREATE PROCEDURE dbo.pr_newGame (@ClockTime INT, @ClockIncrement INT, @PlayerBlack VARCHAR(64), @PlayerWhite VARCHAR(64),
 								 @TournamentID INT = NULL, @Type bit = 0)
 AS
@@ -152,16 +153,17 @@ BEGIN
 END
 GO
 
-/* Test */
+/* Test 
 --Casual
-EXEC pr_NewGame 3, 0, 'LuckyLucker', 'yassinetaoufiki', NULL, 0
+EXEC pr_NewGame 3, 0, 'maximederkek', 'bahodiraxmedov', NULL, 0
 --Ranked
-EXEC pr_NewGame 3, 0, 'LuckyLucker', 'yassinetaoufiki', NULL, 1
+EXEC pr_NewGame 3, 0, 'maximederkek', 'bahodiraxmedov', NULL, 1
 SELECT * FROM Chess_Game
 SELECT * FROM Chess_Casual
 SELECT * FROM Chess_Ranked
 SELECT * FROM Chess_Classified
 GO
+*/
 
 -- Indices para termination = NULL? ou para date
 -- Input: Type 0 - casual; 1 - ranked; NULL - both 
@@ -180,9 +182,11 @@ BEGIN
 		WHERE Termination IS NULL
 END
 GO
-
+/* Test
 EXEC pr_getOnGoingGames 
 GO
+*/
+
 
 --- Private ---
 -- Get FormatID for given Format ClockTime and ClockIncrement
@@ -195,12 +199,12 @@ BEGIN
 	RETURN @FormatID
 END
 GO
-
+/* Test
 DECLARE @FormatID INT
 SET @FormatID = dbo.udf_GetFormatID(3, 0)
 SELECT @FormatID
 GO
--- TODO: Adicionar trigger para Name e Date no tournament
+*/
 
 -- Private
 -- Get TournamentID for given Tournament name and date
@@ -219,11 +223,15 @@ CREATE FUNCTION dbo.udf_GetAllOpenings() RETURNS TABLE
 AS
 	RETURN SELECT [Name] FROM Chess_Opening
 GO
+/* Test
 SELECT * FROM dbo.udf_GetAllOpenings()
 GO
-
+*/
 CREATE FUNCTION dbo.udf_getAllFormats() RETURNS TABLE
 AS
 	RETURN SELECT [Name], ClockTime, ClockIncrement FROM Chess_Format
 GO
+/* Test
 SELECT * FROM dbo.udf_getAllFormats()
+*/
+
