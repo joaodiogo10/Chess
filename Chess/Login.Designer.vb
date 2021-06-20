@@ -27,6 +27,7 @@ Partial Class Login
         Me.TextBoxPassword = New System.Windows.Forms.TextBox()
         Me.LabelPassword = New System.Windows.Forms.Label()
         Me.ButtonLogin = New System.Windows.Forms.Button()
+        Me.ButtonShow = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'LabelUsername
@@ -49,9 +50,9 @@ Partial Class Login
         '
         Me.TextBoxPassword.Location = New System.Drawing.Point(43, 112)
         Me.TextBoxPassword.Name = "TextBoxPassword"
-        Me.TextBoxPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TextBoxPassword.Size = New System.Drawing.Size(100, 23)
         Me.TextBoxPassword.TabIndex = 3
+        Me.TextBoxPassword.UseSystemPasswordChar = True
         '
         'LabelPassword
         '
@@ -71,11 +72,21 @@ Partial Class Login
         Me.ButtonLogin.Text = "Login"
         Me.ButtonLogin.UseVisualStyleBackColor = True
         '
+        'ButtonShow
+        '
+        Me.ButtonShow.Location = New System.Drawing.Point(149, 112)
+        Me.ButtonShow.Name = "ButtonShow"
+        Me.ButtonShow.Size = New System.Drawing.Size(52, 23)
+        Me.ButtonShow.TabIndex = 5
+        Me.ButtonShow.Text = "Show"
+        Me.ButtonShow.UseVisualStyleBackColor = True
+        '
         'Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(201, 227)
+        Me.ClientSize = New System.Drawing.Size(213, 227)
+        Me.Controls.Add(Me.ButtonShow)
         Me.Controls.Add(Me.ButtonLogin)
         Me.Controls.Add(Me.TextBoxPassword)
         Me.Controls.Add(Me.LabelPassword)
@@ -94,4 +105,5 @@ Partial Class Login
     Friend WithEvents LabelPassword As Label
     Friend WithEvents ButtonLogin As Button
     Friend WithEvents TextBoxPassword As TextBox
+    Friend WithEvents ButtonShow As Button
 End Class

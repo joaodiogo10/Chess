@@ -29,7 +29,6 @@ Public Class Users
         If (RDR.Read()) Then
             user.Username = RDR.Item("Username")
             user.Name = RDR.Item("Name")
-            user.Password = RDR.Item("Password")
             user.Country = RDR.Item("Country")
             user.Email = RDR.Item("Email")
             user.RegistrationDate = RDR.Item("RegistrationDate")

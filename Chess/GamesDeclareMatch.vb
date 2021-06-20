@@ -49,7 +49,11 @@ Public Class GamesDeclareMatch
         CMD.Parameters.Add("@GameID", SqlDbType.Int).Value = gameID
         CMD.Parameters.Add("@Result", SqlDbType.VarChar, 5).Value = ComboBoxResult.Text
 
-        CMD.ExecuteNonQuery()
+        Try
+            CMD.ExecuteNonQuery()
+        Catch ex As Exception
+            MsgBox("Operation failed. " & vbCrLf & "ERROR MESSAGE: " & vbCrLf & ex.Message)
+        End Try
         CN.Close()
         Me.Close()
     End Sub
