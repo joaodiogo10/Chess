@@ -44,7 +44,7 @@ Public Class Users
     End Function
     Sub LoadUsers()
         CMD.CommandType = CommandType.Text
-        CMD.CommandText = "SELECT * FROM udf_GetUsersInfo()"
+        CMD.CommandText = "SELECT * FROM GetUsersInfo"
         CN.Open()
         Dim RDR As SqlDataReader
         RDR = CMD.ExecuteReader

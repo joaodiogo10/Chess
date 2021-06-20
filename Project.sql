@@ -294,7 +294,7 @@ Select * FROM Chess_PuzzleRecord
 Select * FROM Chess_PuzzleTheme
 Select * FROM Chess_Puzzle
 Select * FROM Chess_Theme
-Select * FROM Chess_Classified ORDER BY [USER]
+Select * FROM Chess_Classified ORDER BY CurrentRating
 Select * FROM Chess_Casual
 Select * FROM Chess_Ranked
 Select * FROM Chess_Game

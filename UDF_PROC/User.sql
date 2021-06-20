@@ -1,6 +1,6 @@
 DROP FUNCTION udf_GetUserFriends
 DROP FUNCTION udf_GetUserInfo
-DROP FUNCTION udf_GetUsersInfo
+--DROP FUNCTION udf_GetUsersInfo
 DROP FUNCTION udf_AuthenticateUser
 DROP FUNCTION udf_GetUserTeams
 DROP PROCEDURE pr_RegisterUser
@@ -34,15 +34,27 @@ GO
 */
 -- Returns all user's personal information for all users
 -- Username, Password, Name, Email, Country, RegistrationDate, Title
+/*
 CREATE FUNCTION udf_GetUsersInfo () RETURNS TABLE
 AS
 	RETURN	SELECT Username, [Name], Email, Country, RegistrationDate, Title 
+			FROM Chess_User LEFT OUTER JOIN Chess_UserTitle ON Username = [User]
+GO
+*/
+CREATE VIEW GetUsersInfo
+AS
+	SELECT Username, [Name], Email, Country, RegistrationDate, Title 
 			FROM Chess_User LEFT OUTER JOIN Chess_UserTitle ON Username = [User]
 GO
 /* Test
 SELECT * FROM udf_GetUsersInfo()
 GO
 */
+
+
+
+
+
 CREATE FUNCTION udf_GetUserTeams (@Username VARCHAR(64)) RETURNS Table
 AS
 	RETURN SELECT Team FROM Chess_User JOIN Chess_Member ON Username = [User] WHERE Username = @Username

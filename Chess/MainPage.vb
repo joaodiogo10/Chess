@@ -7,6 +7,7 @@ Public Class MainPage
     Dim teamsForm As Teams
     Dim gamesForm As Games
     Dim loginForm As Login
+    Dim leaderboardsForm As Leaderboards
     Dim registerForm As Register
     Private Sub MainPage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CN = New SqlConnection("data source = localhost;" & "integrated security=true;" & "initial catalog = Chess;")
@@ -39,5 +40,10 @@ Public Class MainPage
     Private Sub ButtonRegister_Click(sender As Object, e As EventArgs) Handles ButtonRegister.Click
         registerForm = New Register(CN, CMD)
         registerForm.ShowDialog()
+    End Sub
+
+    Private Sub ButtonLeaderboards_Click(sender As Object, e As EventArgs) Handles ButtonLeaderboards.Click
+        leaderboardsForm = New Leaderboards(CN, CMD)
+        leaderboardsForm.Show()
     End Sub
 End Class

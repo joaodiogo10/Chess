@@ -31,6 +31,6 @@
     End Property
 
     Public Overrides Function ToString() As String
-        Return Name + " " + Clock + " " + ClockIncrement
+        Return "Name: " + Name + Space(5) + "Clock: " + Clock + Space(5) + "Increment: " + ClockIncrement
     End Function
 End Class
