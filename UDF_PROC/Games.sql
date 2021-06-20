@@ -17,60 +17,77 @@ AS
 BEGIN
 	DECLARE @Game TABLE (GameID INT, [Type] VARCHAR(10), Black VARCHAR(64), White VARCHAR(64), Duration VARCHAR(5), PGN VARCHAR(MAX),
 	[Date] DATE, [Time] Time,Termination VARCHAR(64), Result VARCHAR(5), FormatName VARCHAR(64), ClockTime INT, ClockIncrement INT, 
-	OpeningECOCode VARCHAR(3), OpeningName VARCHAR(128), OpeningPattern VARCHAR(1024),
-	TournamentName VARCHAR(64), TournamentDate DATETIME)
+	OpeningECOCode VARCHAR(3), OpeningName VARCHAR(128), OpeningPattern VARCHAR(1024), BlackRating INT, BlackEarnedRating INT
+    , WhiteRating INT, WhiteEarnedRating INT, TournamentName VARCHAR(64), TournamentDate DATETIME)
+	
+	DECLARE @GameTmp TABLE (Color VARCHAR(5), Player VARCHAR(64),Rating INT, EarnedRating INT)
 
-	DECLARE @GameTmp TABLE (GameID INT, Black VARCHAR(64), White VARCHAR(64), [Type] VARCHAR(10))
-
-	INSERT INTO @GameTmp (GameID, Black, White) SELECT *
+	INSERT INTO @GameTmp (Color, Player, Rating,EarnedRating) SELECT *
 	FROM 
 	(
-		SELECT [User], Game, Color
-		FROM (
-			SELECT [User], Game, Color FROM Chess_Ranked WHERE Chess_Ranked.game = @GameID
-			) AS Records
+		SELECT Color, [User],Rating, EarnedRating FROM Chess_Ranked WHERE Chess_Ranked.game = @GameID
 	) AS Players
-	PIVOT(
-		MAX(Players.[User]) FOR Color in (Black, White)
-	)PIV
 
+	DECLARE @GameType VARCHAR(10)
 	DECLARE @N INT
 	SELECT @N = COUNT(*) FROM @GameTmp
 	IF (@N < 1)
 	BEGIN
-		INSERT INTO @GameTmp (GameID, Black, White) SELECT *
+		INSERT INTO @GameTmp ( Color, Player) SELECT *
 		FROM 
 		(
-			SELECT [User], Game, Color
-			FROM (
-				SELECT [User], Game, Color FROM Chess_Casual WHERE Chess_Casual.game = @GameID
-				) AS Records
+			SELECT Color, [User] FROM Chess_Casual WHERE Chess_Casual.game = @GameID
 		) AS Players
-		PIVOT(
-			MAX(Players.[User]) FOR Color in (Black, White)
-		)PIV
-		UPDATE @GameTmp  SET [Type] = 'Casual'
+		SET @GameType = 'Casual'
 	END
 	ELSE
-		UPDATE @GameTmp  SET [Type] = 'Ranked'
+	BEGIN
+		SET @GameType = 'Ranked'
+	END
 		
-	INSERT INTO @Game SELECT GameID, [Type], Black, White, Chess_GAME.Duration, PGN, Chess_Game.[Date], Chess_Game.[Time], Termination, Result, Chess_Format.[Name], Chess_Format.ClockTime, Chess_Format.ClockIncrement
-	, Chess_Opening.ECOCode, Chess_Opening.[Name], Chess_Opening.Pattern, Chess_Tournament.[Name], Chess_Tournament.[Date]
-	FROM 
-	(
-		@GameTmp 
-		JOIN 
-		Chess_Game ON GameID = Chess_Game.ID 
+	DECLARE @CPlayer AS VARCHAR(64)
+	DECLARE @CRating AS INT, @CEarnedRating AS INT
+	DECLARE @CColor As VARCHAR(5)
+
+	DECLARE C CURSOR FAST_FORWARD
+	FOR SELECT Player, Color, Rating, EarnedRating FROM @GameTmp
+	OPEN C
+	FETCH C INTO @CPlayer, @CColor, @CRating, @CEarnedRating
+	
+	IF @@FETCH_STATUS = 0
+		INSERT @Game ([Type], GameID) VALUES (@GameType, @GameID)
+	WHILE @@FETCH_STATUS = 0
+	BEGIN
+		IF(@CColor = 'Black')
+		BEGIN
+			UPDATE @Game SET BlackRating = @CRating, BlackEarnedRating = @CEarnedRating, Black = @CPlayer
+		END
+		ELSE
+			UPDATE @Game SET  WhiteRating = @CRating, WhiteEarnedRating = @CEarnedRating, White = @CPlayer
+		FETCH C INTO @CPlayer, @CColor, @CRating, @CEarnedRating
+	END
+	CLOSE C;
+	DEALLOCATE C;
+		
+	UPDATE @Game SET Duration = Game.Duration, PGN = Game.PGN, [Date]= Game.[Date], [Time] = Game.[Time]
+	, Termination = Game.Termination, Result = Game.Result, FormatName =  Chess_Format.[Name], ClockTime = Chess_Format.ClockTime, ClockIncrement = Chess_Format.ClockIncrement, 
+	OpeningECOCode = Chess_Opening.ECOCode, OpeningName = Chess_Opening.[Name], OpeningPattern = Chess_Opening.Pattern
+	, TournamentName =  Chess_Tournament.[Name], TournamentDate = Chess_Tournament.[Date] FROM
+		(
+		SELECT * FROM
+		Chess_Game
+		WHERE Chess_Game.ID = @GameID
+		) As Game
 		LEFT OUTER JOIN
-		Chess_Format ON Chess_Format.ID = Chess_Game.FormatID
+		Chess_Format ON Chess_Format.ID = Game.FormatID
 		LEFT OUTER JOIN 
-		Chess_Opening ON Chess_Opening.ID = Chess_Game.OpeningID
+		Chess_Opening ON Chess_Opening.ID = Game.OpeningID
 		LEFT OUTER JOIN
-		Chess_Tournament ON Chess_Tournament.ID = Chess_Game.TournamentID
-	)
+		Chess_Tournament ON Chess_Tournament.ID = Game.TournamentID
 
 	SELECT @TournamentDate = TournamentDate, @TournamentName = TournamentName FROM @Game 
-	SELECT GameID, [Type], Black , White , Duration, PGN , [Time],[Date], Termination, Result, FormatName, ClockTime, ClockIncrement, OpeningECOCode, OpeningName, OpeningPattern FROM @Game
+	SELECT GameID, [Type], Black, BlackRating, BlackEarnedRating , White, WhiteRating, WhiteEarnedRating, Duration, PGN, [Time], [Date],
+		   Termination, Result, FormatName, ClockTime, ClockIncrement, OpeningECOCode, OpeningName, OpeningPattern FROM @Game
 END
 GO
 /*
@@ -157,12 +174,11 @@ GO
 --Casual
 EXEC pr_NewGame 3, 0, 'maximederkek', 'bahodiraxmedov', NULL, 0
 --Ranked
-EXEC pr_NewGame 3, 0, 'maximederkek', 'bahodiraxmedov', NULL, 1
-SELECT * FROM Chess_Game
+EXEC pr_NewGame 1, 0,  'Pranjal70', 'maximederkek', NULL, 1
 SELECT * FROM Chess_Casual
+SELECT * FROM Chess_Game
 SELECT * FROM Chess_Ranked
 SELECT * FROM Chess_Classified
-
 GO
 */
 
@@ -187,10 +203,15 @@ EXEC pr_getOnGoingGames
 GO
 */
 
-CREATE FUNCTION dbo.udf_getGamesOfPlayer(@Username VARCHAR(64)) RETURNS TABLE
+CREATE FUNCTION dbo.udf_getGamesOfPlayer(@Username VARCHAR(64)) RETURNS  @Games TABLE (Game INT)
 AS
-	RETURN SELECT Game FROM Chess_Ranked WHERE [User] = @Username
+BEGIN
+	INSERT INTO @Games 
+		   SELECT Game FROM Chess_Ranked WHERE [User] = @Username
 		   UNION SELECT Game FROM Chess_Casual WHERE [User] = @Username
+		   ORDER BY Game DESC
+	RETURN
+END
 GO
 
 

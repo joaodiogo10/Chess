@@ -17,6 +17,10 @@
     Private _openingPattern As String
     Private _tournamentName As String
     Private _tournamentDate As String
+    Private _blackRating As String
+    Private _blackEarnedRating As String
+    Private _whiteRating As String
+    Private _whiteEarnedRating As String
 
     Public Property GameID As String
         Get
@@ -177,6 +181,38 @@
             _tournamentDate = value
         End Set
     End Property
+    Public Property BlackRating As String
+        Get
+            Return _blackRating
+        End Get
+        Set(value As String)
+            _blackRating = value
+        End Set
+    End Property
+    Public Property BlackEarnedRating As String
+        Get
+            Return _blackEarnedRating
+        End Get
+        Set(value As String)
+            _blackEarnedRating = value
+        End Set
+    End Property
+    Public Property WhiteRating As String
+        Get
+            Return _whiteRating
+        End Get
+        Set(value As String)
+            _whiteRating = value
+        End Set
+    End Property
+    Public Property WhiteEarnedRating As String
+        Get
+            Return _whiteEarnedRating
+        End Get
+        Set(value As String)
+            _whiteEarnedRating = value
+        End Set
+    End Property
 
 
     Public Sub New(gameID As UInteger, black As String, white As String, duration As String, pgn As String, [date] As String, [time] As String, termination As String, result As String, formatName As String, clockTime As String, clockIncrement As String, openingECOCode As String, openingName As String, openingPattern As String, tournamentName As String, tournamentDate As String, type As String)
@@ -198,6 +234,15 @@
         _openingPattern = openingPattern
         _tournamentName = tournamentName
         _tournamentDate = tournamentDate
+
+    End Sub
+
+    Public Sub New(gameID As UInteger, type As String, black As String, white As String, duration As String, pgn As String, [date] As String, time As String, termination As String, result As String, formatName As String, clockTime As String, clockIncrement As String, openingECOCode As String, openingName As String, openingPattern As String, tournamentName As String, tournamentDate As String, blackRating As String, blackEarnedRating As String, whiteRating As String, whiteEarnedRating As String)
+        Me.New(gameID, type, black, white, duration, pgn, [date], time, termination, result, formatName, clockTime, clockIncrement, openingECOCode, openingName, openingPattern, tournamentName, tournamentDate)
+        _blackRating = blackRating
+        _blackEarnedRating = blackEarnedRating
+        _whiteRating = whiteRating
+        _whiteEarnedRating = whiteEarnedRating
     End Sub
 
     Public Sub New()

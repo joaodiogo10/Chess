@@ -24,7 +24,7 @@ INSTEAD OF UPDATE
 AS
 BEGIN 
 	UPDATE Chess_Game
-	SET Duration = inserted.Duration, PGN = inserted.PGN, Termination = UPPER(inserted.Termination), Result = UPPER(inserted.Result) 
+	SET Duration = inserted.Duration, PGN = inserted.PGN, Termination = UPPER(inserted.Termination), Result = UPPER(inserted.Result), OpeningID = inserted.OpeningID
 	FROM inserted
 	WHERE Chess_Game.ID = inserted.ID
 END
