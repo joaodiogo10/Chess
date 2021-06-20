@@ -24,7 +24,7 @@ GO
 -- Username, Password, Email, Country, RegistrationDate, Title
 CREATE FUNCTION udf_GetUserInfo (@Username VARCHAR(64)) RETURNS TABLE
 AS
-	RETURN	SELECT Username, [Password], [Name], Email, Country, RegistrationDate, Title 
+	RETURN	SELECT Username, [Name], Email, Country, RegistrationDate, Title 
 			FROM Chess_User LEFT OUTER JOIN Chess_UserTitle ON Username = [User]
 			Where Username = @Username
 GO
@@ -36,7 +36,7 @@ GO
 -- Username, Password, Name, Email, Country, RegistrationDate, Title
 CREATE FUNCTION udf_GetUsersInfo () RETURNS TABLE
 AS
-	RETURN	SELECT Username, [Password], [Name], Email, Country, RegistrationDate, Title 
+	RETURN	SELECT Username, [Name], Email, Country, RegistrationDate, Title 
 			FROM Chess_User LEFT OUTER JOIN Chess_UserTitle ON Username = [User]
 GO
 /* Test
@@ -80,12 +80,18 @@ CREATE PROCEDURE pr_RegisterUser (@Username VARCHAR(64), @Password VARCHAR(64), 
 AS
 BEGIN
 	BEGIN TRY
+		IF (LEN(@Username) < 3)
+			RAISERROR ('Invalid username!', 16, 1)
+
+		IF (LEN(@Password) < 6)
+			RAISERROR ('Password is too short!', 16, 1)
+			
+		IF (LEN(@name) < 3)
+			RAISERROR ('Invalid name!', 16, 1)
+
 		IF (NOT @Email LIKE '%_@__%._%')
 			RAISERROR ('Invalid email!', 16, 1)
 	
-		IF (LEN(@Password) < 6)
-			RAISERROR ('Password is too short!', 16, 1)
-		
 		DECLARE @HashedPassword AS BINARY(32)
 		SET @HashedPassword = HASHBYTES('SHA2_256', @Password)
 		DECLARE @RegistrationDate DATE
@@ -123,6 +129,7 @@ SELECT * FROM Chess_User WHERE Username = 'ChessUsername'
 SELECT * FROM Chess_Classified WHERE [User] = 'ChessUsername'
 SELECT dbo.udf_AuthenticateUser('ChessUsername', 'ChessUser')
 
+SELECT * FROM Chess_User WHERE Username = 'joao'
 DELETE FROM Chess_Classified WHERE [User] = 'ChessUsername'
 DELETE FROM Chess_User WHERE Username = 'ChessUsername'
 */

@@ -5,7 +5,7 @@ Public Class Login
     Dim CN As SqlConnection
     Dim CMD As SqlCommand
     Dim currentUser As Integer
-
+    Dim game As Games
     Sub New(CN As SqlConnection, CMD As SqlCommand)
         InitializeComponent()
         Me.CN = CN
@@ -27,11 +27,22 @@ Public Class Login
         If valid = True Then
             MsgBox("Authenticated")
             Me.Close()
+            game = New Games(CN, CMD)
+            game.Show()
         Else
             MsgBox("User not valid")
         End If
     End Sub
     Private Sub ButtonLogin_Click(sender As Object, e As EventArgs) Handles ButtonLogin.Click
         Authenticate(TextBoxUsername.Text, TextBoxPassword.Text)
+    End Sub
+
+    Private Sub ButtonShow_Click(sender As Object, e As EventArgs) Handles ButtonShow.Click
+        If TextBoxPassword.UseSystemPasswordChar Then
+            TextBoxPassword.UseSystemPasswordChar = False
+        Else
+            TextBoxPassword.UseSystemPasswordChar = True
+        End If
+
     End Sub
 End Class

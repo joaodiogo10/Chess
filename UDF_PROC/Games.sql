@@ -5,6 +5,7 @@ DROP FUNCTION dbo.udf_GetFormatID
 DROP FUNCTION dbo.udf_GetTournamentID
 DROP FUNCTION dbo.udf_GetAllOpenings
 DROP FUNCTION dbo.udf_getAllFormats
+DROP FUNCTION dbo.udf_getGamesOfPlayer
 GO
 -- indices Game - Ranked e Casual
 
@@ -73,7 +74,7 @@ BEGIN
 END
 GO
 /*
-Test
+Test 
 DECLARE @TournamentName VARCHAR(64)
 DECLARE @TournamentDate DATE
 DECLARE @TournamentTime TIME
@@ -83,7 +84,6 @@ SELECT @TournamentName
 SELECT @TournamentDate
 GO
 */
-
 -- Create new Game of given format (of given tournament opcional)
 -- Create new GameRecords
 -- Inputs: ClockTime, ClockIncrement, Player name playing black, Player name playing white
@@ -162,10 +162,10 @@ SELECT * FROM Chess_Game
 SELECT * FROM Chess_Casual
 SELECT * FROM Chess_Ranked
 SELECT * FROM Chess_Classified
+
 GO
 */
 
--- Indices para termination = NULL? ou para date
 -- Input: Type 0 - casual; 1 - ranked; NULL - both 
 CREATE PROCEDURE dbo.pr_getOnGoingGames(@Type bit = NULL)
 AS
@@ -187,7 +187,17 @@ EXEC pr_getOnGoingGames
 GO
 */
 
+CREATE FUNCTION dbo.udf_getGamesOfPlayer(@Username VARCHAR(64)) RETURNS TABLE
+AS
+	RETURN SELECT Game FROM Chess_Ranked WHERE [User] = @Username
+		   UNION SELECT Game FROM Chess_Casual WHERE [User] = @Username
+GO
 
+
+/* Test
+SELECT * FROM dbo.udf_getGamesOfPlayer('maximederkek')
+GO
+*/
 --- Private ---
 -- Get FormatID for given Format ClockTime and ClockIncrement
 -- Returns NULL IF Format doesnt exist

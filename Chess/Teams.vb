@@ -82,6 +82,7 @@ Public Class Teams
 
     Sub LoadTeams()
         CMD.CommandText = "SELECT * FROM Chess_Team"
+        CMD.CommandType = CommandType.Text
         CN.Open()
         Dim RDR As SqlDataReader
         RDR = CMD.ExecuteReader
