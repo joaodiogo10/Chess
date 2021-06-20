@@ -237,9 +237,10 @@ GO
 SELECT * FROM dbo.udf_GetAllOpenings()
 GO
 */
-CREATE FUNCTION dbo.udf_getAllFormats() RETURNS TABLE
+
+CREATE VIEW ALLFORMATS
 AS
-	RETURN SELECT [Name], ClockTime, ClockIncrement FROM Chess_Format
+	SELECT [Name], ClockTime, ClockIncrement FROM Chess_Format
 GO
 /* Test
 SELECT * FROM dbo.udf_getAllFormats()
