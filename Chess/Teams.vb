@@ -190,7 +190,6 @@ Public Class Teams
                 MsgBox("User is already a member")
             End If
         Catch ex As Exception
-            'Por aqui uma mensagem melhor ???
             MsgBox("Failed to add member in database. " & vbCrLf & "ERROR MESSAGE: " & vbCrLf & ex.Message)
         Finally
             CMD.CommandType = CommandType.Text
