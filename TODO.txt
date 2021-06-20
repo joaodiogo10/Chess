@@ -1,4 +1,0 @@
--- Chess_Classified: Adicionar index para User ?
--- Chess_Members: user ?
--- Chess_Friends: user ?
-

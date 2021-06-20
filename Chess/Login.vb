@@ -5,7 +5,7 @@ Public Class Login
     Dim CN As SqlConnection
     Dim CMD As SqlCommand
     Dim currentUser As Integer
-    Dim game As Games
+    Dim history As History
     Sub New(CN As SqlConnection, CMD As SqlCommand)
         InitializeComponent()
         Me.CN = CN
@@ -27,8 +27,8 @@ Public Class Login
         If valid = True Then
             MsgBox("Authenticated")
             Me.Close()
-            game = New Games(CN, CMD)
-            game.Show()
+            history = New History(CN, CMD, Username)
+            history.Show()
         Else
             MsgBox("User not valid")
         End If
