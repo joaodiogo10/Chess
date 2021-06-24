@@ -3,8 +3,6 @@ DROP TRIGGER tr_onClassifiedInsert
 GO
 
 -- Only update Current and Max ratings
--- TODO: RAISERROR if user tries to update others columns  
--- Missing position
 
 CREATE TRIGGER tr_onClassifiedUpdate ON Chess_Classified
 INSTEAD OF UPDATE

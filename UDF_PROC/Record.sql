@@ -13,7 +13,7 @@ BEGIN
 END
 GO
 
-
+-- Calculate new player's ratings
 CREATE FUNCTION dbo.udf_EloRating(@R1 INT, @R2 INT, @Winner bit, @K INT) RETURNS @ELOs TABLE (ELOP1 INT, ELOP2 INT)
 AS
 BEGIN
@@ -39,7 +39,6 @@ BEGIN
 	RETURN
 END
 GO
-
 /* Test
 DECLARE @RBlack INT = 1200, @RWhite INT = 1200
 DECLARE @NewRBlack DECIMAL(3,2), @NewRWhite DECIMAL(3,2)
@@ -53,6 +52,7 @@ SELECT ELOP1 AS Black, ELOP2 AS White FROM dbo.udf_EloRating(@RBlack, @RWhite, 1
 
 */
 
+-- Create game records
 CREATE PROC pr_CreateRecord (@Duration VARCHAR(5), @PGN VARCHAR(MAX), @Termination VARCHAR(64), @OpeningName VARCHAR(128),
 								  @GameID INT, @Result VARCHAR(5))
 AS

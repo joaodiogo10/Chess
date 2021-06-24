@@ -14,7 +14,7 @@ BEGIN
 			RAISERROR('Format doesnt exists', 16, 1)
 		END
 
-	SELECT TOP (@Top) Position, [User], CurrentRating, MaxRating  FROM Chess_Classified WHERE FormatID = @FormatID ORDER BY CurrentRating DESC, [User]
+	SELECT TOP (@Top) [User], CurrentRating, MaxRating  FROM Chess_Classified WHERE FormatID = @FormatID ORDER BY CurrentRating DESC, [User]
 END
 GO
 /* Test 

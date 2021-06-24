@@ -129,4 +129,8 @@ Public Class History
             LoadGame(ListBoxHistory.Items.Item(currentOnGoingMatch))
         End If
     End Sub
+
+    Private Sub ButtonReload_Click(sender As Object, e As EventArgs) Handles ButtonReload.Click
+        LoadHistory()
+    End Sub
 End Class

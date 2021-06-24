@@ -106,12 +106,12 @@ Partial Class GamesNewGame
         Me.ComboBoxGameFormat.FormattingEnabled = True
         Me.ComboBoxGameFormat.Location = New System.Drawing.Point(293, 95)
         Me.ComboBoxGameFormat.Name = "ComboBoxGameFormat"
-        Me.ComboBoxGameFormat.Size = New System.Drawing.Size(110, 23)
+        Me.ComboBoxGameFormat.Size = New System.Drawing.Size(253, 23)
         Me.ComboBoxGameFormat.TabIndex = 8
         '
         'ButtonConfirm
         '
-        Me.ButtonConfirm.Location = New System.Drawing.Point(444, 133)
+        Me.ButtonConfirm.Location = New System.Drawing.Point(599, 134)
         Me.ButtonConfirm.Name = "ButtonConfirm"
         Me.ButtonConfirm.Size = New System.Drawing.Size(75, 23)
         Me.ButtonConfirm.TabIndex = 11
@@ -122,7 +122,7 @@ Partial Class GamesNewGame
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(531, 169)
+        Me.ClientSize = New System.Drawing.Size(708, 169)
         Me.Controls.Add(Me.ButtonConfirm)
         Me.Controls.Add(Me.ComboBoxGameFormat)
         Me.Controls.Add(Me.LabelGameFormat)

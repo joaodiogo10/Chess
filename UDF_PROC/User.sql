@@ -41,6 +41,8 @@ AS
 			FROM Chess_User LEFT OUTER JOIN Chess_UserTitle ON Username = [User]
 GO
 */
+
+
 CREATE VIEW GetUsersInfo
 AS
 	SELECT Username, [Name], Email, Country, RegistrationDate, Title 
@@ -65,6 +67,8 @@ SELECT * FROM udf_GetUserTeams('GhostAgent')
 GO
 */
 
+-- authenticates user 
+-- returns 1 - authenticated, 0 - authentication failed 
 CREATE FUNCTION udf_AuthenticateUser (@Username VARCHAR(64), @Password VARCHAR(64)) RETURNS bit
 AS
 BEGIN
@@ -86,7 +90,12 @@ SELECT dbo.udf_AuthenticateUser('M3hran', 'invalidPassword')
 GO
 */
 
-
+-- register user
+-- Inputs:
+-- @Username (min 4 characters)
+-- @Password (min 7 characters)
+-- @Name (min 4 characters)
+-- @Email (LIKE '%_@__%._%')
 CREATE PROCEDURE pr_RegisterUser (@Username VARCHAR(64), @Password VARCHAR(64), @Name VARCHAR(128), @Country VARCHAR(64),
 							 @Email VARCHAR(128)) 
 AS

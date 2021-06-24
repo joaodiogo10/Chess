@@ -109,10 +109,8 @@ GO
 CREATE TABLE Chess_Classified (
 	[User]					 VARCHAR(64) NOT NULL,
 	[FormatID]				 INT NOT NULL,
-	Position				 INT NOT NULL DEFAULT 0,
 	MaxRating				 INT NOT NULL DEFAULT 400,
 	CurrentRating			 INT NOT NULL DEFAULT 400,
-	CHECK(Position >= 0),
 	CHECK(MaxRating >= 0 AND MaxRating >= CurrentRating),
 	CHECK(CurrentRating >= 0),
 	PRIMARY KEY ([FormatID], [User])

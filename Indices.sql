@@ -2,7 +2,7 @@ DROP INDEX IxRankedGame ON Chess_Ranked
 DROP INDEX IxCasualGame ON Chess_Casual
 DROP INDEX IxGameTermination ON Chess_Game
 DROP INDEX IxRankedUserIncGame ON Chess_ranked
-DROP INDEX IxCasualUserIncGame ON Chess_ranked
+DROP INDEX IxCasualUserIncGame ON Chess_casual
 GO
 -- Indice para records (ranked e casual) para o registo de record de um determinado jogo, na procura de dados do jogo
 CREATE INDEX IxRankedGame ON Chess_Ranked(Game)

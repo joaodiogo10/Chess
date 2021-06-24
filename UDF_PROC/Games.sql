@@ -7,10 +7,8 @@ DROP FUNCTION dbo.udf_GetAllOpenings
 DROP FUNCTION dbo.udf_getAllFormats
 DROP FUNCTION dbo.udf_getGamesOfPlayer
 GO
--- indices Game - Ranked e Casual
 
 -- get game info
--- Incluir rating diff?
 -- outputs: TournamentName, tournamentDate and tournamentTime of the game. If the game isn´t from a tournament returns NULL
 CREATE PROCEDURE pr_GetGameInfo (@GameID INT, @TournamentName VARCHAR(64) OUTPUT, @TournamentDate DATE OUTPUT, @TournamentTime TIME OUTPUT) 
 AS
@@ -101,15 +99,11 @@ SELECT @TournamentName
 SELECT @TournamentDate
 GO
 */
+
 -- Create new Game of given format (of given tournament opcional)
--- Create new GameRecords
--- Inputs: ClockTime, ClockIncrement, Player name playing black, Player name playing white
+-- Create new Game records (Chess_Ranked or Chess_Casual)
+-- Inputs: ClockTime, ClockIncrement, PlayerBlack (user playing black), PlayerWhite (user playing white)
 --		   Type (0 casual, 1 ranked)
--- Acrescentar o possibilidade de definir o time?
--- Ver se ja esta num jogo
-
--- TRANSACTION ??
-
 CREATE PROCEDURE dbo.pr_newGame (@ClockTime INT, @ClockIncrement INT, @PlayerBlack VARCHAR(64), @PlayerWhite VARCHAR(64),
 								 @TournamentID INT = NULL, @Type bit = 0)
 AS
@@ -169,7 +163,6 @@ BEGIN
 	END CATCH
 END
 GO
-
 /* Test 
 --Casual
 EXEC pr_NewGame 3, 0, 'maximederkek', 'bahodiraxmedov', NULL, 0
@@ -182,6 +175,7 @@ SELECT * FROM Chess_Classified
 GO
 */
 
+-- Returns all on going games
 -- Input: Type 0 - casual; 1 - ranked; NULL - both 
 CREATE PROCEDURE dbo.pr_getOnGoingGames(@Type bit = NULL)
 AS
@@ -203,6 +197,8 @@ EXEC pr_getOnGoingGames
 GO
 */
 
+-- Returns all games of given player (username)
+
 CREATE FUNCTION dbo.udf_getGamesOfPlayer(@Username VARCHAR(64)) RETURNS  @Games TABLE (Game INT)
 AS
 BEGIN
@@ -213,13 +209,47 @@ BEGIN
 	RETURN
 END
 GO
-
-
 /* Test
 SELECT * FROM dbo.udf_getGamesOfPlayer('maximederkek')
 GO
 */
---- Private ---
+
+
+
+-- Returns all registed openings
+
+CREATE FUNCTION dbo.udf_GetAllOpenings() RETURNS TABLE
+AS
+	RETURN SELECT [Name] FROM Chess_Opening
+GO
+/* Test
+SELECT * FROM dbo.udf_GetAllOpenings()
+GO
+*/
+
+-- Returns all registed formats
+
+CREATE FUNCTION dbo.udf_getAllFormats() RETURNS TABLE
+AS
+	RETURN SELECT [Name], ClockTime, ClockIncrement FROM Chess_Format
+GO
+/* Test
+SELECT * FROM dbo.udf_getAllFormats()
+*/
+
+-- Private --
+-- Get TournamentID for given Tournament name and date
+-- Returns NULL IF Tournament doesnt exist
+
+CREATE FUNCTION dbo.udf_GetTournamentID (@Name VARCHAR(64), @Date DATE, @Time TIME) RETURNS INT
+AS
+BEGIN
+	DECLARE @TournamentID INT
+	SELECT @TournamentID = ID FROM Chess_Tournament WHERE [Name] = @Name AND [Date] = @Date AND [Time] = @Time
+	RETURN @TournamentID
+END
+GO
+
 -- Get FormatID for given Format ClockTime and ClockIncrement
 -- Returns NULL IF Format doesnt exist
 CREATE FUNCTION dbo.udf_GetFormatID (@ClockTime INT, @ClockIncrement INT) RETURNS INT
@@ -236,33 +266,3 @@ SET @FormatID = dbo.udf_GetFormatID(3, 0)
 SELECT @FormatID
 GO
 */
-
--- Private
--- Get TournamentID for given Tournament name and date
--- Returns NULL IF Tournament doesnt exist
-CREATE FUNCTION dbo.udf_GetTournamentID (@Name VARCHAR(64), @Date DATE, @Time TIME) RETURNS INT
-AS
-BEGIN
-	DECLARE @TournamentID INT
-	SELECT @TournamentID = ID FROM Chess_Tournament WHERE [Name] = @Name AND [Date] = @Date AND [Time] = @Time
-	RETURN @TournamentID
-END
-GO
-
-
-CREATE FUNCTION dbo.udf_GetAllOpenings() RETURNS TABLE
-AS
-	RETURN SELECT [Name] FROM Chess_Opening
-GO
-/* Test
-SELECT * FROM dbo.udf_GetAllOpenings()
-GO
-*/
-CREATE FUNCTION dbo.udf_getAllFormats() RETURNS TABLE
-AS
-	RETURN SELECT [Name], ClockTime, ClockIncrement FROM Chess_Format
-GO
-/* Test
-SELECT * FROM dbo.udf_getAllFormats()
-*/
-

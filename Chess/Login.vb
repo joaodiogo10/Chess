@@ -30,7 +30,7 @@ Public Class Login
             history = New History(CN, CMD, Username)
             history.Show()
         Else
-            MsgBox("User not valid")
+            MsgBox("Invalid username or password")
         End If
     End Sub
     Private Sub ButtonLogin_Click(sender As Object, e As EventArgs) Handles ButtonLogin.Click
