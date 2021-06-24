@@ -4,6 +4,7 @@ DROP FUNCTION udf_GetUserInfo
 DROP FUNCTION udf_AuthenticateUser
 DROP FUNCTION udf_GetUserTeams
 DROP PROCEDURE pr_RegisterUser
+DROP VIEW GetUsersInfo
 GO 
 
 -- Returns all user's friends given a username

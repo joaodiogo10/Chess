@@ -10,7 +10,7 @@ Public Class MainPage
     Dim leaderboardsForm As Leaderboards
     Dim registerForm As Register
     Private Sub MainPage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        CN = New SqlConnection("data source = localhost;" & "integrated security=true;" & "initial catalog = Chess;")
+        CN = New SqlConnection("data source = tcp:mednat.ieeta.pt\SQLSERVER,8101;" & "initial catalog = p1g7;" & "uid=p1g7;" & "password=Baleia2!;")
         CMD = New SqlCommand With {
             .Connection = CN
         }
