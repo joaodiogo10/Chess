@@ -103,6 +103,8 @@ Public Class Teams
 
     Sub ShowTeam(team As Team)
         TextBoxLeader.Text = team.Leader
+        RichTextBoxDescription.Text = team.Description
+        TextBoxName.Text = team.Name
         LoadMembers(team)
     End Sub
 

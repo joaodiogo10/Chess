@@ -92,4 +92,6 @@ GO
 /*
 EXEC pr_DeleteTeam @teamName = 'ChessMaster'
 GO
+SELECT * FROM Chess_Member where Team = 'ChessMaster'
+SELECT * FROM Chess_Team where Name = 'ChessMaster'
 */

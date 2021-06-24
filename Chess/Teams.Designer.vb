@@ -39,6 +39,10 @@ Partial Class Teams
         Me.ButtonDeleteMember = New System.Windows.Forms.Button()
         Me.ButtonChangeLeader = New System.Windows.Forms.Button()
         Me.ButtonDeleteTeam = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TextBoxName = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.RichTextBoxDescription = New System.Windows.Forms.RichTextBox()
         Me.SuspendLayout()
         '
         'LabelSearchTeam
@@ -137,7 +141,7 @@ Partial Class Teams
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(684, 108)
+        Me.Label2.Location = New System.Drawing.Point(684, 187)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(113, 20)
         Me.Label2.TabIndex = 30
@@ -145,7 +149,7 @@ Partial Class Teams
         '
         'TextBoxMemberAdd
         '
-        Me.TextBoxMemberAdd.Location = New System.Drawing.Point(684, 132)
+        Me.TextBoxMemberAdd.Location = New System.Drawing.Point(684, 211)
         Me.TextBoxMemberAdd.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxMemberAdd.Name = "TextBoxMemberAdd"
         Me.TextBoxMemberAdd.ReadOnly = True
@@ -190,18 +194,58 @@ Partial Class Teams
         '
         'ButtonDeleteTeam
         '
-        Me.ButtonDeleteTeam.Location = New System.Drawing.Point(169, 532)
+        Me.ButtonDeleteTeam.Location = New System.Drawing.Point(447, 454)
         Me.ButtonDeleteTeam.Name = "ButtonDeleteTeam"
         Me.ButtonDeleteTeam.Size = New System.Drawing.Size(133, 43)
         Me.ButtonDeleteTeam.TabIndex = 36
         Me.ButtonDeleteTeam.Text = "Delete Team"
         Me.ButtonDeleteTeam.UseVisualStyleBackColor = True
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(379, 36)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(49, 20)
+        Me.Label3.TabIndex = 38
+        Me.Label3.Text = "Name"
+        '
+        'TextBoxName
+        '
+        Me.TextBoxName.Location = New System.Drawing.Point(379, 60)
+        Me.TextBoxName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TextBoxName.Name = "TextBoxName"
+        Me.TextBoxName.ReadOnly = True
+        Me.TextBoxName.Size = New System.Drawing.Size(279, 27)
+        Me.TextBoxName.TabIndex = 39
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(684, 36)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(85, 20)
+        Me.Label4.TabIndex = 40
+        Me.Label4.Text = "Description"
+        '
+        'RichTextBoxDescription
+        '
+        Me.RichTextBoxDescription.Location = New System.Drawing.Point(683, 64)
+        Me.RichTextBoxDescription.Name = "RichTextBoxDescription"
+        Me.RichTextBoxDescription.ReadOnly = True
+        Me.RichTextBoxDescription.Size = New System.Drawing.Size(280, 95)
+        Me.RichTextBoxDescription.TabIndex = 42
+        Me.RichTextBoxDescription.Text = ""
+        '
         'Teams
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(976, 676)
+        Me.Controls.Add(Me.RichTextBoxDescription)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.TextBoxName)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.ButtonDeleteTeam)
         Me.Controls.Add(Me.ButtonChangeLeader)
         Me.Controls.Add(Me.ButtonDeleteMember)
@@ -243,4 +287,8 @@ Partial Class Teams
     Friend WithEvents ButtonDeleteMember As Button
     Friend WithEvents ButtonChangeLeader As Button
     Friend WithEvents ButtonDeleteTeam As Button
+    Friend WithEvents Label3 As Label
+    Friend WithEvents TextBoxName As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents RichTextBoxDescription As RichTextBox
 End Class
